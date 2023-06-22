@@ -1,7 +1,17 @@
-@import url('./common.css');
-@import url('./hero.css');
-@import url('./all-categories.css');
-@import url('./popular.css');
-@import url('./search.css');
-@import url('./favorites-hero.css');
-@import url('./favorites-list.css');
+/* base */
+
+@import url('./base/common.css');
+
+/* layouts */
+
+@import url('./layout/hero.css');
+@import url('./layout/all-categories.css');
+@import url('./layout/popular.css');
+@import url('./layout/search.css');
+@import url('./layout/favorites-hero.css');
+@import url('./layout/favorites-list.css');
+
+/* components */
+
+@import url('./components/buttons.css');
+@import url('./components/recipte-item.css');

@@ -1,0 +1,83 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/Inter-Regular.woff2'),
+    url('../../fonts/Inter-Regular.woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/Inter-Medium.woff2'),
+    url('../../fonts/Inter-Medium.woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../fonts/Inter-SemiBold.woff2'),
+    url('../../fonts/Inter-SemiBold.woff');
+  font-weight: 600;
+}
+
+:root {
+  /* White Theme */
+  --primary-white-color: #ffffff;
+  --primaty-black-color: #050505;
+  --text-white-color: #f8f8f8;
+  --accent-color: #9bb537;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter';
+  font-size: 20px;
+  color: ;
+}
+
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  margin: 100px 0 0 0;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    min-width: 375px;
+    max-width: 478px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    min-width: 768px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
