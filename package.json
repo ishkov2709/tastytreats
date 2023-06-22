@@ -18,7 +18,10 @@
     "url": "https://github.com/ishkov2709/tastytreats-GROUP3/issues"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "axios": "^1.4.0",
+    "modern-normalize": "^1.1.0",
+    "slick-carousel": "^1.8.1",
+    "smooth-scrollbar": "^8.8.4"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
