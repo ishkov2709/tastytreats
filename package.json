@@ -21,7 +21,8 @@
     "axios": "^1.4.0",
     "modern-normalize": "^1.1.0",
     "slick-carousel": "^1.8.1",
-    "smooth-scrollbar": "^8.8.4"
+    "smooth-scrollbar": "^8.8.4",
+    "tui-pagination": "^3.4.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
