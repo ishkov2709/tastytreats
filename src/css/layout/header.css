@@ -1,0 +1,43 @@
+.container{
+display: flex;
+}
+  .menu{
+    display: flex;
+    text-decoration: none;
+    padding-left: 10px;
+   font-size: 15px;
+  }
+
+.menu-home{
+  color:var(--accent-color);
+    text-decoration: none;
+    
+}
+.menu-home:focus,
+.menu-home:hover{
+    color: blue;
+}
+
+.menu{
+    color:var(--primaty-black-color);
+
+}
+.menu:hover,
+.menu:focus{
+    color: blue;
+}
+.logo-tasty{
+    color:var(--accent-color);
+    text-decoration: none;
+    padding-top: 21px;
+    margin-left: auto;
+}
+.logo-treats{
+color:var(--primaty-black-color);
+font-size: 18px;
+font-weight:500
+}
+.button{
+    border: none;
+    background: transparent;
+}
