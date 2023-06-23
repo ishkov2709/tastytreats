@@ -1,0 +1,20 @@
+.search-input:not(button) {
+  width: 295px;
+  height: auto;
+  padding: 14px 18px;
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.20);
+  outline: none;
+  
+}
+
+@media (min-width: 768px) {
+  .search-input:not(button) {
+    width: 278px;
+  }
+}
+
+.search-button {
+  border: none;
+  background-color: transparent;
+}
