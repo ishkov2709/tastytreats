@@ -1,10 +1,11 @@
 import debounce from 'lodash.debounce';
 import { searchImages } from '../service/categorySearch';
+import Notiflix from 'notiflix';
 
-const searchButton = document.getElementById('search-button');
-const searchInput = document.getElementById('search-input');
-const imageContainer = document.getElementById('image-container');
-const loadMoreBtn = document.getElementById('load-more-button');
+const searchButton = document.querySelector('.search-icon');
+const searchInput = document.querySelector('.search-input');
+const imageContainer = document.querySelector('#image-container');
+const loadMoreBtn = document.querySelector('#load-more-button');
 let page = 1;
 let searchQuery = '';
 
