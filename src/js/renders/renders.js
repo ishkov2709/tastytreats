@@ -10,7 +10,7 @@ function measureRating(position, pating) {
 function checkOnFavor(id) {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
-  if (data.find(el => el.id === id)) {
+  if (storage && data.find(el => el.id === id)) {
     return 'active';
   }
   return '';
