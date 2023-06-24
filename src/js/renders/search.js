@@ -1,3 +1,4 @@
+import debounce from 'lodash.debounce';
 import { searchImages } from '../service/categorySearch';
 
 const searchButton = document.getElementById('search-button');
@@ -7,12 +8,14 @@ const loadMoreBtn = document.getElementById('load-more-button');
 let page = 1;
 let searchQuery = '';
 
+const debouncedSearch = debounce(searchImagesAndDisplay, 300);
+
 function handleSearch() {
   searchQuery =
     searchInput.value.trim().charAt(0).toUpperCase() +
     searchInput.value.trim().slice(1).toLowerCase();
   if (searchQuery !== '') {
-    searchImagesAndDisplay();
+    debouncedSearch();
   } else {
     Notiflix.Notify.info('Please enter a search query.');
   }
@@ -67,6 +70,7 @@ function handleScroll() {
     }
   }
 }
+
 function createImageCards(images) {
   imageContainer.innerHTML = '';
 
