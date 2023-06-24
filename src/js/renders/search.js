@@ -17,6 +17,7 @@ function handleSearch() {
     searchInput.value.trim().slice(1).toLowerCase();
   if (searchQuery !== '') {
     debouncedSearch();
+    searchInput.value = ''; 
   } else {
     Notiflix.Notify.info('Please enter a search query.');
   }
