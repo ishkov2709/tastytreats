@@ -2,9 +2,11 @@ import debounce from 'lodash.debounce';
 import { searchImages } from '../service/categorySearch';
 import Notiflix from 'notiflix';
 
+import renderItem from './renders';
+
 const searchButton = document.querySelector('.search-icon');
 const searchInput = document.querySelector('.search-input');
-const imageContainer = document.querySelector('#image-container');
+const recipeContainer = document.querySelector('#image-container');
 const loadMoreBtn = document.querySelector('#load-more-button');
 let page = 1;
 let searchQuery = '';
@@ -25,8 +27,14 @@ function handleSearch() {
 
 async function searchImagesAndDisplay() {
   try {
-    const images = await searchImages(searchQuery, page);
-    createImageCards(images);
+    const data = await searchImages(searchQuery, page);
+    const recipes = await [
+      ...data.map(({ title, description, preview, rating, _id }) =>
+        renderItem(title, description, preview, rating, _id)
+      ),
+    ].join('');
+
+    recipeContainer.innerHTML = recipes;
   } catch (error) {
     console.error(error);
   }
@@ -83,19 +91,30 @@ function handleScroll() {
   }
 }
 
-function createImageCards(images) {
-  imageContainer.innerHTML = '';
+function hendleClickOnRecipes({ target }) {
+  if (!target.closest('button')) return;
 
-  images?.forEach(image => {
-    const card = document.createElement('div');
-    card.classList.add('image-card');
+  const currentBtn = target.closest('button');
 
-    const imageElement = document.createElement('img');
-    imageElement.src = image.preview;
-    card.appendChild(imageElement);
+  if (currentBtn.name === 'favorite') {
+    const recipeInfo = JSON.parse(currentBtn.dataset.info);
 
-    imageContainer.appendChild(card);
-  });
+    currentBtn.classList.toggle('active');
+    const storage = JSON.parse(localStorage.getItem('favorites')) ?? [];
+    if (currentBtn.classList.contains('active')) {
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify([...storage, recipeInfo])
+      );
+    } else {
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify([...storage.filter(el => el.id !== recipeInfo.id)])
+      );
+    }
+  }
 }
+
+recipeContainer.addEventListener('click', hendleClickOnRecipes);
 
 window.addEventListener('scroll', handleScroll);

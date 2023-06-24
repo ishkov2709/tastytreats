@@ -38,7 +38,9 @@ body {
   font-size: 20px;
 }
 
-li {
+ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
@@ -85,6 +87,7 @@ p {
 @media screen and (min-width: 768px) {
   .pos-wrapper {
     display: flex;
+    gap: 64px;
   }
 }
 
