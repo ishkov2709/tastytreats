@@ -4,7 +4,7 @@
 }
 
 .search-label {
-  color: rgba(5, 5, 5, 0.50);
+  color: rgba(5, 5, 5, 0.5);
   font-size: 14px;
   font-family: Inter;
   font-weight: 500;
@@ -16,7 +16,6 @@
 
 .search-input-wrapper {
   position: relative;
-  
 }
 
 .search-icon {
@@ -36,7 +35,13 @@
   height: auto;
   padding: 14px 18px 14px 40px;
   border-radius: 15px;
-  border: 1px solid rgba(5, 5, 5, 0.20);
+  border: 1px solid rgba(5, 5, 5, 0.2);
   outline: none;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+  .search-input {
+    width: 335px;
+  }
 }
