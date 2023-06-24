@@ -17,7 +17,7 @@ function handleSearch() {
     searchInput.value.trim().slice(1).toLowerCase();
   if (searchQuery !== '') {
     debouncedSearch();
-    searchInput.value = ''; 
+    searchInput.value = '';
   } else {
     Notiflix.Notify.info('Please enter a search query.');
   }
@@ -62,6 +62,16 @@ async function loadMoreImages() {
     Notiflix.Notify.failure('An error occurred while fetching images.');
   }
 }
+
+function handleInput() {
+  if (searchInput.value.trim() !== '') {
+    searchButton.classList.add('hidden');
+  } else {
+    searchButton.classList.remove('hidden');
+  }
+}
+
+searchInput.addEventListener('input', handleInput);
 
 function handleScroll() {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
