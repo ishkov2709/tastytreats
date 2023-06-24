@@ -10,10 +10,13 @@
   font-weight: 500;
   line-height: 18px;
   word-wrap: break-word;
+  margin-bottom: 8px;
+  display: block;
 }
 
 .search-input-wrapper {
   position: relative;
+  
 }
 
 .search-icon {
