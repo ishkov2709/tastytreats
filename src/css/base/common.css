@@ -36,9 +36,12 @@
 body {
   font-family: 'Inter';
   font-size: 20px;
+  color: #050505;
 }
 
-li {
+ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
@@ -64,6 +67,7 @@ p {
 
 @media screen and (max-width: 767px) {
   .container {
+    padding: 0 20px;
     min-width: 375px;
     max-width: 478px;
   }
@@ -75,8 +79,32 @@ p {
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .container {
     max-width: 1280px;
+  }
+}
+
+.pos-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .pos-wrapper {
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .pos-wrapper {
+    flex-wrap: wrap;
+
+    height: 1423px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .pos-wrapper {
+    height: 1244px;
   }
 }
