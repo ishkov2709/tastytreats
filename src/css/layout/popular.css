@@ -1,84 +1,88 @@
 .popular {
-    padding-top: 80px;
-    width: 100%;
-    display: block;
-    padding-left: 0;
+  padding-top: 80px;
+  width: 100%;
+  display: block;
+  padding-left: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .popular {
+    order: 3;
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .popular {
-        width: 176px;
-        padding-top: 64px;
-        margin-right: 32px;
-    }
+  .popular {
+    width: 176px;
+    padding-top: 64px;
   }
-  @media screen and (min-width: 1280px) {
-    .popular {
-        width: 235px;
-        margin-right: 64px;
-    }
+}
+@media screen and (min-width: 1280px) {
+  .popular {
+    width: 235px;
   }
-
-  h2 {
-    text-transform: uppercase;
-    text-align: left;
-    font-size: 18px;
-    margin-bottom: 40px;
 }
 
-  @media screen and (min-width: 768px) {
-    h2 {  
-        font-size: 18px;
-        margin-bottom: 32px;
-    }
-  }
+h2 {
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
 
-  @media screen and (min-width: 1280px) {
-    h2 {
-        font-size: 24px;
-        margin-bottom: 40px;
-    }
+@media screen and (min-width: 768px) {
+  h2 {
+    font-size: 18px;
+    margin-bottom: 32px;
   }
+}
 
-  .popular-list{
-    padding-left: 0;
+@media screen and (min-width: 1280px) {
+  h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
   }
+}
 
-  .list-item{
-    margin-bottom: 24px;
-    display: flex;
-    gap: 16px;
-  }
+.popular-list {
+  padding-left: 0;
+}
 
-  @media screen and (min-width: 768px) {
-    .list-item{
-      margin-bottom: 16px;
-    }
-  }
+.list-item {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 16px;
+}
 
-  @media screen and (min-width: 1280px) {
-    .list-item{
-        margin-bottom: 32px;
-    }
+@media screen and (min-width: 768px) {
+  .list-item {
+    margin-bottom: 16px;
   }
+}
 
-  .img-popular{
-    width: 64px;
-    height: 64px;
-    border-radius: 8;
+@media screen and (min-width: 1280px) {
+  .list-item {
+    margin-bottom: 32px;
   }
-  @media screen and (min-width: 768px) {
-    .img-popular{
-      width: 48px;
-      height: 48px;
-    }
+}
+
+.img-popular {
+  width: 64px;
+  height: 64px;
+  border-radius: 8;
+}
+@media screen and (min-width: 768px) {
+  .img-popular {
+    width: 48px;
+    height: 48px;
   }
-  
-.popular-text{
+}
+
+.popular-text {
   overflow: hidden;
 }
 
-.popular-title{
+.popular-title {
   font-size: 14px;
   margin-bottom: 8px;
   white-space: nowrap;
@@ -86,18 +90,16 @@
   overflow: hidden;
 }
 
-.popular-desc{
+.popular-desc {
   font-size: 12px;
   display: -webkit-box;
-  -webkit-line-clamp: 3; 
-  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
-  .popular-desc{
+  .popular-desc {
     font-size: 10px;
   }
 }
-
-

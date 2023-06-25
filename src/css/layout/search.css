@@ -46,133 +46,50 @@
   }
 }
 
-.box {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 16px;
-  row-gap: 32px;
+@media screen and (max-width: 767px) {
+  .search-res-container {
+    width: 335px;
+  }
 }
 
-.recipe-item {
-  position: relative;
+@media screen and (min-width: 768px) {
+  .search-res-container {
+    width: 496px;
 
-  width: 250px;
-  height: 287px;
-
-  display: flex;
-  color: #f8f8f8;
-
-  font-size: 12px;
-
-  border-radius: 14px;
+    flex: 0 0 100%;
+  }
 }
 
-.inter-box {
-  margin-top: auto;
-
-  padding: 0 16px 16px 16px;
-}
-
-.favorite-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-
-  background: transparent;
-
-  border: none;
-}
-
-.title-item {
-  width: 218px;
-
-  margin-bottom: 8px;
-
-  font-size: 14px;
-  line-height: 1.3;
-  text-transform: uppercase;
-}
-
-.title-descr {
-  width: 218px;
-  height: 30px;
-  margin-bottom: 16px;
-}
-
-.overflow-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ellipsis-multiline {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.rate-details-box {
-  display: flex;
-  align-items: center;
-}
-
-.rate {
-  font-size: 14px;
-  font-weight: 500;
-  margin-right: 4px;
-}
-
-.rate-list {
-  display: flex;
-  margin-right: auto;
-}
-
-.star-icon {
-  fill: currentColor;
-}
-
-.rate-item-active {
-  color: #eea10c;
-}
-
-.rate-item {
-  color: rgba(248, 248, 248, 0.1);
-}
-
-.button.item-rec {
-  padding: 8px 16px;
-
-  background-color: #9bb537;
-  color: #f8f8f8;
-  border: none;
-  border-radius: 8px;
-}
-
-.search-res-container {
-  width: 782px;
+@media screen and (min-width: 1280px) {
+  .search-res-container {
+    width: 782px;
+  }
 }
 
 .input-section {
   margin-bottom: 32px;
 }
 
-.image-container {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 16px;
-  row-gap: 32px;
+@media screen and (max-width: 767px) {
+  .image-container {
+    display: block;
+    margin-bottom: 40px;
+  }
 }
 
-.heart-icon {
-  transition: transform 250ms linear;
-  fill: none;
+@media screen and (min-width: 768px) {
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    row-gap: 16px;
+
+    margin-bottom: 64px;
+  }
 }
 
-.favorite-btn:hover .heart-icon {
-  transform: scale(1.5);
-}
-
-.favorite-btn.active .heart-icon {
-  fill: #f8f8f8;
+@media screen and (min-width: 1280px) {
+  .image-container {
+    row-gap: 32px;
+  }
 }

@@ -1,13 +1,26 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
+function resizeVisPage() {
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth < 768) {
+    return 2;
+  }
+
+  if (screenWidth >= 768) {
+    return 3;
+  }
+}
+
 function startPagination(page, perPage, totalPages, callback) {
   const options = {
     totalItems: Number(perPage) * Number(totalPages),
-    itemsPerPage: 9,
-    visiblePages: 3,
+    itemsPerPage: Number(perPage),
+    visiblePages: resizeVisPage(),
     page: Number(page),
     centerAlign: false,
+    omitMiddlePages: false,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
     template: {

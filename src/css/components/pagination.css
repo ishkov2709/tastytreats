@@ -1,5 +1,9 @@
 #pagination {
   height: 44px;
+
+  display: none;
+
+  margin: 0 0 100px 0;
 }
 
 #pagination .tui-page-btn {
@@ -76,6 +80,7 @@
 @media screen and (max-width: 767px) {
   #pagination {
     height: 40px;
+    margin-bottom: 80px;
   }
 
   #pagination .tui-page-btn {
@@ -97,5 +102,60 @@
 
   #pagination .prev-button {
     padding: 5px 0;
+  }
+
+  #pagination.tui-pagination .tui-prev {
+    margin-right: 14px;
+  }
+
+  #pagination .tui-page-btn.tui-next.move-button,
+  #pagination .tui-page-btn.tui-is-disabled.tui-next.prev-button {
+    margin-left: 14px;
+  }
+
+  #pagination.tui-pagination .tui-first.prev-button,
+  #pagination .tui-page-btn.tui-first.move-button {
+    margin-right: 4px;
+  }
+
+  #pagination .tui-page-btn.tui-last.move-button,
+  #pagination .tui-page-btn.tui-is-disabled.tui-last.prev-button {
+    margin-left: 4px;
+  }
+
+  #pagination .pag-page {
+    margin-right: 8px;
+  }
+
+  #pagination .tui-page-btn.pag-page:nth-child(n) {
+    margin-left: 8px;
+  }
+
+  #pagination .tui-page-btn.pag-page:nth-child(2n + 1) {
+    display: none;
+  }
+
+  #pagination .tui-page-btn.tui-next-is-ellip.more-button.tui-last-child {
+    display: none;
+  }
+
+  #pagination .tui-page-btn.tui-is-selected {
+    margin-right: 0;
+  }
+
+  #pagination .tui-page-btn.tui-prev-is-ellip.more-button.tui-first-child {
+    margin-right: 0;
+  }
+
+  #pagination
+    .tui-page-btn.tui-prev-is-ellip.more-button.tui-first-child
+    + .tui-page-btn.tui-is-selected {
+    margin-left: 8px;
+  }
+
+  #pagination
+    .tui-page-btn.tui-is-selected.tui-first-child
+    + .tui-page-btn.pag-page {
+    margin-right: 0;
   }
 }

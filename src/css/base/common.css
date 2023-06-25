@@ -85,21 +85,26 @@ p {
   }
 }
 
+.pos-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (min-width: 768px) {
   .pos-wrapper {
-    display: flex;
-    gap: 64px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  aside {
-    width: 176px;
+  .pos-wrapper {
+    flex-wrap: wrap;
+
+    height: 1423px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  aside {
-    width: 235px;
+  .pos-wrapper {
+    height: 1244px;
   }
 }
