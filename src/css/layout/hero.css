@@ -1,17 +1,32 @@
-.hero {
-  margin-bottom: 50px;
-}
-
-@media screen and (min-width: 1110px) {
-  .hero-container {
-    display: flex;
-    gap: 32px;
-    margin-right: 0;
+@media screen and (max-width: 767px) {
+  .hero {
+    padding: 88px 0 0 0;
+    margin-bottom: 80px;
   }
 }
 
-.hero-container {
-  padding-right: 0;
+@media screen and (min-width: 768px) {
+  .hero {
+    padding: 93px 0 0 0;
+    margin-bottom: 80px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero {
+    padding: 100px 0 0 0;
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero-container {
+    display: flex;
+    gap: 32px;
+    min-width: 1280px;
+    margin: 0 auto;
+    padding: 0 0 0 100px;
+  }
 }
 
 .hero-info {
@@ -22,7 +37,7 @@
     padding-right: 290px;
   }
 }
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .hero-info {
     margin-top: auto;
     margin-bottom: auto;
@@ -91,7 +106,7 @@
     padding: 14px 28px;
   }
 }
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .order-now-btn {
     margin-bottom: 0;
   }

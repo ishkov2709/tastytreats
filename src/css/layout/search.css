@@ -66,7 +66,7 @@
   }
 }
 
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .search-res-container {
     width: 782px;
     min-height: 728px;
@@ -95,7 +95,7 @@
   }
 }
 
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .image-container {
     row-gap: 32px;
   }
