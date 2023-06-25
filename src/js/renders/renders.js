@@ -16,6 +16,36 @@ function checkOnFavor(id) {
   return '';
 }
 
+function ratingScale(rating) {
+  return `<ul class='rate-list'>
+             <li class=${measureRating(1, rating)}>
+              <svg class="star-icon" width="18" height="18">
+                <use href="${svg}#star"></use>
+              </svg>
+            </li>
+            <li class=${measureRating(2, rating)}>
+              <svg class="star-icon" width="18" height="18">
+                <use href="${svg}#star"></use>
+              </svg>
+            </li>
+            <li class=${measureRating(3, rating)}>
+              <svg class="star-icon" width="18" height="18">
+                <use href="${svg}#star"></use>
+              </svg>
+            </li>
+            <li class=${measureRating(4, rating)}>
+              <svg class="star-icon" width="18" height="18">
+                <use href="${svg}#star"></use>
+              </svg>
+            </li>
+            <li class=${measureRating(5, rating)}>
+              <svg class="star-icon" width="18" height="18">
+                <use href="${svg}#star"></use>
+              </svg>
+            </li>
+          </ul>`;
+}
+
 function renderItem(title, description, preview, rating, id) {
   const infoRecipe = {
     title,
@@ -25,13 +55,13 @@ function renderItem(title, description, preview, rating, id) {
     id,
   };
   const fixRating = rating.toFixed(1);
-  return `<div class='recipe-item' style='
-                                          background: linear-gradient(0deg, rgba(5, 5, 5, 0.6),
-                                          rgba(5, 5, 5, 0)),
-                                          url(${preview}); 
-                                          background-position: center;
-                                          background-size: cover;'
-                >
+  return `<div class='recipe-item' 
+                style='
+                      background: linear-gradient(0deg, rgba(5, 5, 5, 0.6),
+                      rgba(5, 5, 5, 0)),
+                      url(${preview}); 
+                      background-position: center;
+                      background-size: cover;'>
 
                   <div class='inter-box'>
 
@@ -48,37 +78,8 @@ function renderItem(title, description, preview, rating, id) {
                     <p class='title-descr ellipsis-multiline'>${description}</p>
 
                     <div class='rate-details-box'>
-
                     <p class='rate'>${fixRating}</p>
-                    
-                    <ul class='rate-list'>
-                       <li class=${measureRating(1, fixRating)}>
-                        <svg class="star-icon" width="18" height="18">
-                          <use href="${svg}#star"></use>
-                        </svg>
-                      </li>
-                      <li class=${measureRating(2, fixRating)}>
-                        <svg class="star-icon" width="18" height="18">
-                          <use href="${svg}#star"></use>
-                        </svg>
-                      </li>
-                      <li class=${measureRating(3, fixRating)}>
-                        <svg class="star-icon" width="18" height="18">
-                          <use href="${svg}#star"></use>
-                        </svg>
-                      </li>
-                      <li class=${measureRating(4, fixRating)}>
-                        <svg class="star-icon" width="18" height="18">
-                          <use href="${svg}#star"></use>
-                        </svg>
-                      </li>
-                      <li class=${measureRating(5, fixRating)}>
-                        <svg class="star-icon" width="18" height="18">
-                          <use href="${svg}#star"></use>
-                        </svg>
-                      </li>
-                    </ul>
-
+                    ${ratingScale(fixRating)}
                     <button type='button' name='details' class='button item-rec' data-id=${id}>See recipe</button>
                     </div>
                   </div>

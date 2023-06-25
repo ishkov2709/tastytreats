@@ -7,8 +7,7 @@ export async function searchImages(searchQuery, page) {
   const apiUrl = `${BASE_URL}?category=${searchQuery}&page=${page}&per_page=9&limit=9`;
 
   try {
-    const response = await axios.get(apiUrl);
-    const data = response.data.results;
+    const { data } = await axios.get(apiUrl);
     return data;
   } catch (error) {
     throw new Error('An error occurred while fetching images.');

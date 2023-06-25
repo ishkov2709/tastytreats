@@ -3,37 +3,48 @@ import { searchImages } from '../service/categorySearch';
 import Notiflix from 'notiflix';
 
 import renderItem from './renders';
+import startPagination from '../utils/pagination';
+
+// Refs
 
 const searchButton = document.querySelector('.search-icon');
 const searchInput = document.querySelector('.search-input');
 const recipeContainer = document.querySelector('#image-container');
-const loadMoreBtn = document.querySelector('#load-more-button');
-let page = 1;
+const paginationBox = document.getElementById('pagination');
+// Vars
+
 let searchQuery = '';
 
 const debouncedSearch = debounce(searchImagesAndDisplay, 300);
 
-function handleSearch() {
+function handleSearch(e) {
+  if (!e.target.value.trim())
+    return Notiflix.Notify.info('Please enter a search query.');
   searchQuery =
     searchInput.value.trim().charAt(0).toUpperCase() +
     searchInput.value.trim().slice(1).toLowerCase();
-  if (searchQuery !== '') {
-    debouncedSearch();
-    searchInput.value = '';
-  } else {
-    Notiflix.Notify.info('Please enter a search query.');
-  }
+  debouncedSearch();
+  searchInput.value = '';
 }
 
-async function searchImagesAndDisplay() {
+export async function searchImagesAndDisplay(currentPage = 1) {
   try {
-    const data = await searchImages(searchQuery, page);
+    const { page, perPage, totalPages, results } = await searchImages(
+      searchQuery,
+      currentPage
+    );
     const recipes = await [
-      ...data.map(({ title, description, preview, rating, _id }) =>
+      ...results.map(({ title, description, preview, rating, _id }) =>
         renderItem(title, description, preview, rating, _id)
       ),
     ].join('');
-
+    console.log(totalPages);
+    if (totalPages > 1) {
+      paginationBox.style.display = 'block';
+      startPagination(page, perPage, totalPages, searchImagesAndDisplay);
+    } else {
+      paginationBox.style.display = 'none';
+    }
     recipeContainer.innerHTML = recipes;
   } catch (error) {
     console.error(error);
@@ -43,33 +54,9 @@ async function searchImagesAndDisplay() {
 searchButton.addEventListener('click', handleSearch);
 searchInput.addEventListener('keydown', event => {
   if (event.key === 'Enter') {
-    handleSearch();
+    handleSearch(event);
   }
 });
-
-async function loadMoreImages() {
-  page++;
-  try {
-    const images = await searchImages(searchQuery, page);
-    if (images.length > 0) {
-      createImageCards(images);
-      if (images.length < 6) {
-        loadMoreBtn.classList.add('hidden');
-        Notiflix.Notify.info(
-          "We're sorry, but you've reached the end of search results."
-        );
-      }
-    } else {
-      loadMoreBtn.classList.add('hidden');
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
-    }
-  } catch (error) {
-    console.log(error);
-    Notiflix.Notify.failure('An error occurred while fetching images.');
-  }
-}
 
 function handleInput() {
   if (searchInput.value.trim() !== '') {
@@ -80,16 +67,6 @@ function handleInput() {
 }
 
 searchInput.addEventListener('input', handleInput);
-
-function handleScroll() {
-  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  if (scrollTop + clientHeight >= scrollHeight - 5) {
-    window.removeEventListener('scroll', handleScroll);
-    if (!loadMoreBtn.classList.contains('hidden')) {
-      loadMoreImages();
-    }
-  }
-}
 
 function hendleClickOnRecipes({ target }) {
   if (!target.closest('button')) return;
@@ -116,5 +93,3 @@ function hendleClickOnRecipes({ target }) {
 }
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);
-
-window.addEventListener('scroll', handleScroll);
