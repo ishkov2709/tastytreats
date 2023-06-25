@@ -27,7 +27,7 @@
   }
 }
 
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .recipe-item {
     width: 250px;
     height: 287px;
@@ -64,7 +64,7 @@
   }
 }
 
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .favorite-btn {
     top: 16px;
     right: 16px;
@@ -93,7 +93,7 @@
   }
 }
 
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .title-item {
     width: 218px;
   }
@@ -116,7 +116,7 @@
   }
 }
 
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1280px) {
   .title-descr {
     width: 218px;
   }
