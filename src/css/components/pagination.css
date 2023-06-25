@@ -144,7 +144,7 @@
   }
 
   #pagination .tui-page-btn.tui-prev-is-ellip.more-button.tui-first-child {
-    margin-right: 0;
+    margin-right: 8px;
   }
 
   #pagination
@@ -157,5 +157,17 @@
     .tui-page-btn.tui-is-selected.tui-first-child
     + .tui-page-btn.pag-page {
     margin-right: 0;
+  }
+
+  #pagination
+    .tui-page-btn.tui-prev-is-ellip.more-button.tui-first-child
+    + .tui-page-btn.pag-page {
+    display: none;
+  }
+
+  #pagination
+    .tui-page-btn.tui-prev-is-ellip.more-button.tui-first-child
+    ~ .tui-page-btn.tui-is-selected {
+    margin-left: 0;
   }
 }
