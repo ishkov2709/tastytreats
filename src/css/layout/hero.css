@@ -7,7 +7,7 @@
     padding-left: 32px;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1110px) {
   .hero {
     display: flex;
     gap: 32px;
@@ -23,7 +23,7 @@
     padding-right: 290px;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1110px) {
   .hero-info {
     margin-top: auto;
     margin-bottom: auto;
@@ -92,7 +92,7 @@
     padding: 14px 28px;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1110px) {
   .order-now-btn {
     margin-bottom: 0;
   }

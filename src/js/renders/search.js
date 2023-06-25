@@ -5,6 +5,8 @@ import Notiflix from 'notiflix';
 import renderItem from './renders';
 import startPagination from '../utils/pagination';
 
+import { OpenModal } from '../utils/modal-recipes';
+
 // Refs
 
 const searchButton = document.querySelector('.search-icon');
@@ -50,13 +52,6 @@ export async function searchImagesAndDisplay(currentPage = 1) {
   }
 }
 
-searchButton.addEventListener('click', handleSearch);
-searchInput.addEventListener('keydown', event => {
-  if (event.key === 'Enter') {
-    handleSearch(event);
-  }
-});
-
 function handleInput() {
   if (searchInput.value.trim() !== '') {
     searchButton.classList.add('hidden');
@@ -65,7 +60,20 @@ function handleInput() {
   }
 }
 
-searchInput.addEventListener('input', handleInput);
+function toggleFavriteRecipe(currentBtn) {
+  const recipeInfo = JSON.parse(currentBtn.dataset.info);
+
+  currentBtn.classList.toggle('active');
+  const storage = JSON.parse(localStorage.getItem('favorites')) ?? [];
+  if (currentBtn.classList.contains('active')) {
+    localStorage.setItem('favorites', JSON.stringify([...storage, recipeInfo]));
+  } else {
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify([...storage.filter(el => el.id !== recipeInfo.id)])
+    );
+  }
+}
 
 function hendleClickOnRecipes({ target }) {
   if (!target.closest('button')) return;
@@ -73,22 +81,21 @@ function hendleClickOnRecipes({ target }) {
   const currentBtn = target.closest('button');
 
   if (currentBtn.name === 'favorite') {
-    const recipeInfo = JSON.parse(currentBtn.dataset.info);
+    toggleFavriteRecipe(currentBtn);
+  }
 
-    currentBtn.classList.toggle('active');
-    const storage = JSON.parse(localStorage.getItem('favorites')) ?? [];
-    if (currentBtn.classList.contains('active')) {
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify([...storage, recipeInfo])
-      );
-    } else {
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify([...storage.filter(el => el.id !== recipeInfo.id)])
-      );
-    }
+  if (currentBtn.name === 'details') {
+    OpenModal(currentBtn);
   }
 }
+
+searchInput.addEventListener('input', handleInput);
+
+searchButton.addEventListener('click', handleSearch);
+searchInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') {
+    handleSearch(event);
+  }
+});
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);

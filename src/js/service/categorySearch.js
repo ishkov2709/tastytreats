@@ -6,11 +6,11 @@ const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api/recipes';
 function resizePage() {
   const screenWidth = window.innerWidth;
 
-  if (screenWidth >= 1280) {
+  if (screenWidth >= 1110) {
     return 'per_page=9&limit=9';
   }
 
-  if (screenWidth >= 768 && screenWidth < 1280) {
+  if (screenWidth >= 768 && screenWidth < 1110) {
     return 'per_page=8&limit=8';
   }
 
@@ -24,7 +24,6 @@ export async function searchImages(searchQuery, page) {
 
   try {
     const { data } = await axios.get(apiUrl);
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error('An error occurred while fetching images.');

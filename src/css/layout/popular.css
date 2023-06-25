@@ -17,7 +17,7 @@
     padding-top: 64px;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1110px) {
   .popular {
     width: 235px;
   }
@@ -37,7 +37,7 @@ h2 {
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1110px) {
   h2 {
     font-size: 24px;
     margin-bottom: 40px;
@@ -60,7 +60,7 @@ h2 {
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1110px) {
   .list-item {
     margin-bottom: 32px;
   }
