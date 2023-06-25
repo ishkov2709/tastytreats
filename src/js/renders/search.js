@@ -17,6 +17,8 @@ const paginationBox = document.getElementById('pagination');
 
 let searchQuery = '';
 
+const DEBOUNCE_DELAY = 500;
+
 function handleSearch({ target }) {
   if (!target.value.trim()) return (searchInput.value = '');
 
@@ -27,7 +29,8 @@ function handleSearch({ target }) {
 }
 
 function customizeText(text) {
-  return `${text[0].toUpperCase()}${text.slice(1, text.length)}`;
+  const trimText = text.trim();
+  return `${trimText[0].toUpperCase()}${trimText.slice(1, trimText.length)}`;
 }
 
 export async function searchImagesAndDisplay(currentPage = 1) {
@@ -86,9 +89,6 @@ function hendleClickOnRecipes({ target }) {
   }
 }
 
-searchInput.addEventListener(
-  'input',
-  debounce(handleSearch, 500, (leading = false))
-);
+searchInput.addEventListener('input', debounce(handleSearch, DEBOUNCE_DELAY));
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);
