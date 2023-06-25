@@ -20,11 +20,12 @@ let searchQuery = '';
 const debouncedSearch = debounce(searchImagesAndDisplay, 300);
 
 function handleSearch(e) {
-  if (!e.target.value.trim())
+  if (e.target.value.trim() === '') {
     return Notiflix.Notify.info('Please enter a search query.');
+  }
   searchQuery =
-    searchInput.value.trim().charAt(0).toUpperCase() +
-    searchInput.value.trim().slice(1).toLowerCase();
+    e.target.value.trim().charAt(0).toUpperCase() +
+    e.target.value.trim().slice(1).toLowerCase();
   debouncedSearch();
   searchInput.value = '';
 }
