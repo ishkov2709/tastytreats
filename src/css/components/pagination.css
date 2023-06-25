@@ -136,7 +136,7 @@
   }
 
   #pagination .tui-page-btn.tui-next-is-ellip.more-button.tui-last-child {
-    display: none;
+    margin-left: 8px;
   }
 
   #pagination .tui-page-btn.tui-is-selected {
