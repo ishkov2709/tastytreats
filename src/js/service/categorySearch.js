@@ -6,11 +6,11 @@ const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api/recipes';
 function resizePage() {
   const screenWidth = window.innerWidth;
 
-  if (screenWidth >= 1110) {
+  if (screenWidth >= 1280) {
     return 'per_page=9&limit=9';
   }
 
-  if (screenWidth >= 768 && screenWidth < 1110) {
+  if (screenWidth >= 768 && screenWidth < 1280) {
     return 'per_page=8&limit=8';
   }
 
