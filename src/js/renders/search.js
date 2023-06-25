@@ -9,25 +9,25 @@ import { OpenModal } from '../utils/modal-recipes';
 
 // Refs
 
-const searchButton = document.querySelector('.search-icon');
 const searchInput = document.querySelector('.search-input');
 const recipeContainer = document.querySelector('#image-container');
 const paginationBox = document.getElementById('pagination');
+
 // Vars
 
 let searchQuery = '';
 
-const debouncedSearch = debounce(searchImagesAndDisplay, 300);
+function handleSearch({ target }) {
+  if (!target.value.trim()) return (searchInput.value = '');
 
-function handleSearch(e) {
-  if (e.target.value.trim() === '') {
-    return Notiflix.Notify.info('Please enter a search query.');
-  }
-  searchQuery =
-    e.target.value.trim().charAt(0).toUpperCase() +
-    e.target.value.trim().slice(1).toLowerCase();
-  debouncedSearch();
-  searchInput.value = '';
+  recipeContainer.innerHTML = '';
+  searchQuery = customizeText(target.value);
+
+  searchImagesAndDisplay();
+}
+
+function customizeText(text) {
+  return `${text[0].toUpperCase()}${text.slice(1, text.length)}`;
 }
 
 export async function searchImagesAndDisplay(currentPage = 1) {
@@ -36,6 +36,7 @@ export async function searchImagesAndDisplay(currentPage = 1) {
       searchQuery,
       currentPage
     );
+    if (!results.length) throw new Error('No result');
     const recipes = await [
       ...results.map(({ title, description, preview, rating, _id }) =>
         renderItem(title, description, preview, rating, _id)
@@ -48,16 +49,11 @@ export async function searchImagesAndDisplay(currentPage = 1) {
       paginationBox.style.display = 'none';
     }
     recipeContainer.innerHTML = recipes;
+    searchInput.value = '';
   } catch (error) {
     console.error(error);
-  }
-}
-
-function handleInput() {
-  if (searchInput.value.trim() !== '') {
-    searchButton.classList.add('hidden');
-  } else {
-    searchButton.classList.remove('hidden');
+    paginationBox.style.display = 'none';
+    Notiflix.Notify.warning('No result for your request, please try again!');
   }
 }
 
@@ -90,13 +86,9 @@ function hendleClickOnRecipes({ target }) {
   }
 }
 
-searchInput.addEventListener('input', handleInput);
-
-searchButton.addEventListener('click', handleSearch);
-searchInput.addEventListener('keydown', event => {
-  if (event.key === 'Enter') {
-    handleSearch(event);
-  }
-});
+searchInput.addEventListener(
+  'input',
+  debounce(handleSearch, 500, (leading = false))
+);
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);
