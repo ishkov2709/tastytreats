@@ -38,7 +38,6 @@ export async function searchImagesAndDisplay(currentPage = 1) {
         renderItem(title, description, preview, rating, _id)
       ),
     ].join('');
-    console.log(totalPages);
     if (totalPages > 1) {
       paginationBox.style.display = 'block';
       startPagination(page, perPage, totalPages, searchImagesAndDisplay);
