@@ -1,0 +1,2 @@
+const t=document.getElementById("themeSwitch"),e=document.body,s=localStorage.getItem("theme");s&&e.classList.add(s),t.addEventListener("click",(()=>{e.classList.contains("light")?(e.classList.remove("light"),e.classList.add("dark"),localStorage.setItem("theme","dark")):(e.classList.remove("dark"),e.classList.add("light"),localStorage.setItem("theme","light"))}));
+//# sourceMappingURL=favorites.072e579b.js.map
