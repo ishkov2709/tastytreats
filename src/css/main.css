@@ -10,7 +10,9 @@
 @import url('./layout/search.css');
 @import url('./layout/favorites-hero.css');
 @import url('./layout/favorites-list.css');
+@import url('./layout/header.css');
 @import url('./layout/modal-recipes.css');
+
 /* components */
 
 @import url('./components/buttons.css');
