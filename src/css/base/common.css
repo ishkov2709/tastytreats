@@ -63,10 +63,6 @@ p {
 
 svg {
   fill: currentColor;
-}
-
-svg {
-  fill: currentColor;
   stroke: currentColor;
 }
 
@@ -76,9 +72,10 @@ svg {
 
 @media screen and (max-width: 767px) {
   .container {
-    padding: 0 20px;
     min-width: 375px;
     max-width: 478px;
+
+    padding: 0 20px;
   }
 }
 
