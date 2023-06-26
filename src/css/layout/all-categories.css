@@ -1,0 +1,13 @@
+@media screen and (min-width: 768px) {
+  .сategories.section {
+    display: inline-block;
+    width: 176px;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .сategories.section {
+    width: 235px;
+  }
+}
