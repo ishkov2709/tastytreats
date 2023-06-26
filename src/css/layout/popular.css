@@ -6,6 +6,9 @@
 
 @media screen and (max-width: 767px) {
   .popular {
+    width: 335px;
+    margin: 0 auto;
+
     order: 3;
   }
 }
