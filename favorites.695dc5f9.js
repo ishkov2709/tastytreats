@@ -1,2 +1,0 @@
-!function(){var t=document.getElementById("themeSwitch"),e=document.body,s=localStorage.getItem("theme");s&&e.classList.add(s),t.addEventListener("click",(function(){e.classList.contains("light")?(e.classList.remove("light"),e.classList.add("dark"),localStorage.setItem("theme","dark")):(e.classList.remove("dark"),e.classList.add("light"),localStorage.setItem("theme","light"))}))}();
-//# sourceMappingURL=favorites.695dc5f9.js.map
