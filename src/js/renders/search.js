@@ -12,12 +12,13 @@ import { OpenModal } from '../utils/modal-recipes';
 const searchInput = document.querySelector('.search-input');
 const recipeContainer = document.querySelector('#image-container');
 const paginationBox = document.getElementById('pagination');
+const spinner = document.getElementById('spinner');
 
 // Vars
 
 let searchQuery = '';
 
-const DEBOUNCE_DELAY = 500;
+const DEBOUNCE_DELAY = 300;
 
 function handleSearch({ target }) {
   if (!target.value.trim()) return (searchInput.value = '');
@@ -33,8 +34,18 @@ function customizeText(text) {
   return `${trimText[0].toUpperCase()}${trimText.slice(1, trimText.length)}`;
 }
 
+function showSpinner() {
+  spinner.style.display = 'block';
+}
+
+function hideSpinner() {
+  spinner.style.display = 'none';
+}
+
 export async function searchImagesAndDisplay(currentPage = 1) {
   try {
+    showSpinner();
+
     const { page, perPage, totalPages, results } = await searchImages(
       searchQuery,
       currentPage
@@ -57,6 +68,8 @@ export async function searchImagesAndDisplay(currentPage = 1) {
     console.error(error);
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
+  } finally {
+    hideSpinner();
   }
 }
 
@@ -89,6 +102,9 @@ function hendleClickOnRecipes({ target }) {
   }
 }
 
-searchInput.addEventListener('input', debounce(handleSearch, DEBOUNCE_DELAY));
+const debouncedHandleSearch = debounce(handleSearch, DEBOUNCE_DELAY);
+
+searchInput.addEventListener('input', debouncedHandleSearch);
+
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);
