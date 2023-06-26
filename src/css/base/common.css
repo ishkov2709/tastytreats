@@ -27,6 +27,8 @@
   --primaty-black-color: #050505;
   --text-white-color: #f8f8f8;
   --accent-color: #9bb537;
+  /* Dark Theme */
+  --primary-dark-color: #1e1e1e;
 }
 
 * {
@@ -61,6 +63,7 @@ p {
 
 svg {
   fill: currentColor;
+  stroke: currentColor;
 }
 
 .container {
@@ -69,9 +72,10 @@ svg {
 
 @media screen and (max-width: 767px) {
   .container {
-    padding: 0 20px;
     min-width: 375px;
     max-width: 478px;
+
+    padding: 0 20px;
   }
 }
 
