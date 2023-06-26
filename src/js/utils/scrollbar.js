@@ -34,14 +34,15 @@ function createCategoryButton(category, onClick) {
         });
         
         button.classList.add('active');
-        
       });
   
       categoryButtons.push(button);
       scrollContent.appendChild(button);
     });
   
+
     // Ініціалізація scrollbar'у
+        
     const scrollbar = SmoothScrollbar.init(categoriesContainer, {
       alwaysShowTracks: true
     });

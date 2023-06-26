@@ -21,8 +21,10 @@
 .search-icon {
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 20px;
   transform: translateY(-50%);
+
+  fill: rgba(5, 5, 5, 0.5);
 }
 
 .search-icon img {
@@ -33,7 +35,11 @@
 .search-input {
   width: 295px;
   height: auto;
-  padding: 14px 18px 14px 40px;
+  padding: 14px 18px 14px 48px;
+
+  font-size: 16px;
+  font-weight: 500;
+
   border-radius: 15px;
   border: 1px solid rgba(5, 5, 5, 0.2);
   outline: none;
@@ -49,20 +55,21 @@
 @media screen and (max-width: 767px) {
   .search-res-container {
     width: 335px;
+    margin: 0 auto;
   }
 }
 
 @media screen and (min-width: 768px) {
   .search-res-container {
     width: 496px;
-
-    flex: 0 0 100%;
+    min-height: 985px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .search-res-container {
     width: 782px;
+    min-height: 728px;
   }
 }
 

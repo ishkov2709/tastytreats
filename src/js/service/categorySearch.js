@@ -24,7 +24,6 @@ export async function searchImages(searchQuery, page) {
 
   try {
     const { data } = await axios.get(apiUrl);
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error('An error occurred while fetching images.');

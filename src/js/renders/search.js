@@ -5,26 +5,32 @@ import Notiflix from 'notiflix';
 import renderItem from './renders';
 import startPagination from '../utils/pagination';
 
+import { OpenModal } from '../utils/modal-recipes';
+
 // Refs
 
-const searchButton = document.querySelector('.search-icon');
 const searchInput = document.querySelector('.search-input');
 const recipeContainer = document.querySelector('#image-container');
 const paginationBox = document.getElementById('pagination');
+
 // Vars
 
 let searchQuery = '';
 
-const debouncedSearch = debounce(searchImagesAndDisplay, 300);
+const DEBOUNCE_DELAY = 500;
 
-function handleSearch(e) {
-  if (!e.target.value.trim())
-    return Notiflix.Notify.info('Please enter a search query.');
-  searchQuery =
-    searchInput.value.trim().charAt(0).toUpperCase() +
-    searchInput.value.trim().slice(1).toLowerCase();
-  debouncedSearch();
-  searchInput.value = '';
+function handleSearch({ target }) {
+  if (!target.value.trim()) return (searchInput.value = '');
+
+  recipeContainer.innerHTML = '';
+  searchQuery = customizeText(target.value);
+
+  searchImagesAndDisplay();
+}
+
+function customizeText(text) {
+  const trimText = text.trim();
+  return `${trimText[0].toUpperCase()}${trimText.slice(1, trimText.length)}`;
 }
 
 export async function searchImagesAndDisplay(currentPage = 1) {
@@ -33,6 +39,7 @@ export async function searchImagesAndDisplay(currentPage = 1) {
       searchQuery,
       currentPage
     );
+    if (!results.length) throw new Error('No result');
     const recipes = await [
       ...results.map(({ title, description, preview, rating, _id }) =>
         renderItem(title, description, preview, rating, _id)
@@ -45,27 +52,28 @@ export async function searchImagesAndDisplay(currentPage = 1) {
       paginationBox.style.display = 'none';
     }
     recipeContainer.innerHTML = recipes;
+    searchInput.value = '';
   } catch (error) {
     console.error(error);
+    paginationBox.style.display = 'none';
+    Notiflix.Notify.warning('No result for your request, please try again!');
   }
 }
 
-searchButton.addEventListener('click', handleSearch);
-searchInput.addEventListener('keydown', event => {
-  if (event.key === 'Enter') {
-    handleSearch(event);
-  }
-});
+function toggleFavriteRecipe(currentBtn) {
+  const recipeInfo = JSON.parse(currentBtn.dataset.info);
 
-function handleInput() {
-  if (searchInput.value.trim() !== '') {
-    searchButton.classList.add('hidden');
+  currentBtn.classList.toggle('active');
+  const storage = JSON.parse(localStorage.getItem('favorites')) ?? [];
+  if (currentBtn.classList.contains('active')) {
+    localStorage.setItem('favorites', JSON.stringify([...storage, recipeInfo]));
   } else {
-    searchButton.classList.remove('hidden');
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify([...storage.filter(el => el.id !== recipeInfo.id)])
+    );
   }
 }
-
-searchInput.addEventListener('input', handleInput);
 
 function hendleClickOnRecipes({ target }) {
   if (!target.closest('button')) return;
@@ -73,22 +81,14 @@ function hendleClickOnRecipes({ target }) {
   const currentBtn = target.closest('button');
 
   if (currentBtn.name === 'favorite') {
-    const recipeInfo = JSON.parse(currentBtn.dataset.info);
+    toggleFavriteRecipe(currentBtn);
+  }
 
-    currentBtn.classList.toggle('active');
-    const storage = JSON.parse(localStorage.getItem('favorites')) ?? [];
-    if (currentBtn.classList.contains('active')) {
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify([...storage, recipeInfo])
-      );
-    } else {
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify([...storage.filter(el => el.id !== recipeInfo.id)])
-      );
-    }
+  if (currentBtn.name === 'details') {
+    OpenModal(currentBtn);
   }
 }
+
+searchInput.addEventListener('input', debounce(handleSearch, DEBOUNCE_DELAY));
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);

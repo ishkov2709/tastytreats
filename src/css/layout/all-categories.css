@@ -1,5 +1,4 @@
 .categories-container {
-  
     height: 198px;
     overflow: hidden;
 
@@ -8,10 +7,7 @@
     margin-bottom: 40px;
     width: 326px;
   }
-  .scroll-content {
-    width: 100%;
-  }
-  
+
   .button-category {
     font-size: 14px;
     font-weight: 500;
@@ -37,12 +33,13 @@
   button.active {
   color: var(--accent-color);
   }
-  .button-Allcategories:hover{
-background-color: var(--accent-color);
-color: var(--primary-white-color);
-border-color: var(--accent-color);
 
+  .button-Allcategories:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-white-color);
+  border-color: var(--accent-color);
   }
+
   .button-Allcategories{
     cursor: pointer;
   margin-bottom: 48px;
