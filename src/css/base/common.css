@@ -57,7 +57,9 @@ p {
 .hero {
   margin: 100px 0 0 0;
 }
-
+.svg{
+  fill: currentColor;
+}
 .container {
   margin: 0 auto;
   padding: 0 16px;

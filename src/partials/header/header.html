@@ -1,27 +1,72 @@
 <header>
-  <div class="container">
+  <div class="container corntainer-header">
     <nav class="main-navigation">
       <ul class="menu">
-      <li class="menu-item">
-        <a class="menu-home link active" href="./index.html">Home</a></li>
-      <li class="menu-item">
-        <a class="menu" href="./favorites.html">Favorites</a></li>
-    </ul>
+        <li class="menu-item">
+          <a class="menu-home link active" href="./index.html">Home</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu" href="./favorites.html">Favorites</a>
+        </li>
+      </ul>
     </nav>
-    <a href="index.html" class="logo-tasty">
-      tasty<span class="logo-treats">treats.</span>
-    </a>
+    <div>
+      <a href="index.html" class="logo-tasty">
+        tasty<span class="logo-treats">treats.</span>
+      </a>
+    </div>
     <div class="buttons">
-    <button class="button">
-      <svg class=""  width="24px" height="24px">
-        <use href="/assets/sprite.svg#icon-shopping-cart-03"></use>
-      </svg>
-    </button>
-    <label class="toggle">
-      <input class="toggle-checkbox" type="checkbox">
-      <div class="toggle-switch"></div>
-      <span class="toggle-label"></span>
-    </label>
-  </div>
+      <div class="butto">
+        <button class="button">
+          <a class="contact" href="tel:+380730000000">
+            <svg class="" width="24px" height="24px">
+              <use
+                class="icon"
+                href="/assets/sprite.svg#icon-shopping-cart-03"
+              ></use>
+            </svg>
+          </a>
+        </button>
+        <label class="toggle">
+          <input class="toggle-checkbox" type="checkbox" id="themeSwitch" />
+          <div class="toggle-switch"></div>
+          <span class="toggle-label"></span>
+        </label>
+      </div>
+      <button
+        type="button"
+        class="mobile-menu-open menu-toggle js-open-menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="menu-open">
+        <svg class="mobile-menu-open_icon" width="25" height="25">
+          <use href="/assets/sprite.svg#icon-menu"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu-new">
+      <div class="menu-container js-menu-container" id="mobile-menu">
+        <div class="mobile-menu">
+          <button class="mobile-menu_close-btn menu-toggle js-close-menu">
+            <svg class="mobile-menu-open_icon" width="25" height="25">
+              <use href="/assets/sprite.svg#icon-x"></use>
+            </svg>
+          </button>
+          <ul class="mobile-menu-nav list">
+            <li class="mobile-menu-nav-item">
+              <a  class="mobile-menu-nav-link link" href="./index.html">Home</a>
+            </li>
+            <li class="mobile-menu-nav-item">
+              <a class="mobile-menu-nav-link link" href="./favorites.html">Favorites</a>
+            </li>
+          </ul>
+        </div>
+        <label class="toggle">
+          <input class="toggle-checkbox" type="checkbox" id="themeSwitch" />
+          <div class="toggle-switch"></div>
+          <span class="toggle-label"></span>
+        </label>
+      </div>
+    </div>
   </div>
 </header>
