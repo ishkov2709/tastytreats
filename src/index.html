@@ -6,18 +6,20 @@
     <title>tastytreats.</title>
     <link rel="stylesheet" href="./css/main.css" />
   </head>
-  <body>
+  <body class="light">
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/header/header.html"></include>
     <main>
       <include src="./partials/hero.html"></include>
-      <aside>
+
+      <div class="pos-wrapper container">
         <include src="./partials/all-categories.html"></include>
         <include src="./partials/popular.html"></include>
-      </aside>
-      <include src="./partials/search.html"></include>
+        <include src="./partials/search.html"></include>
+      </div>
     </main>
-
+    <!-- modal window -->
+    <include src="./partials/modal-recipes.html"></include>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
