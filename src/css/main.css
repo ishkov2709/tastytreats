@@ -4,12 +4,12 @@
 
 /* layouts */
 
-@import url('./layout/all-categories.css');
 @import url('./layout/hero.css');
 @import url('./layout/popular.css');
 @import url('./layout/search.css');
 @import url('./layout/favorites-hero.css');
 @import url('./layout/favorites-list.css');
+@import url('./layout/all-categories.css');
 
 /* components */
 
