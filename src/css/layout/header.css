@@ -2,25 +2,30 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
+.basket_icon {
+  fill: transparent;
+  stroke: var(--primaty-black-color);
+}
 
+.dark .basket_icon {
+  stroke: var(--primary-white-color);
+}
+
+@media screen and (max-width: 1280px) {
   .corntainer-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     padding-top: 20px;
   }
 
   body.light {
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--primary-white-color);
+    color: var(--primaty-black-color);
   }
 
   body.dark {
-    background-color: #333;
+    background-color: var(--primary-dark-color);
     color: #f4f4f4;
   }
   .dark .menu {
@@ -98,7 +103,7 @@
     height: 24px;
     position: relative;
     vertical-align: middle;
-    transition: background 0.25s;
+    transition: background 0.25s linear;
   }
   .toggle-switch:before,
   .toggle-switch:after {
@@ -114,7 +119,7 @@
     position: absolute;
     top: 4px;
     left: 4px;
-    transition: left 0.25s;
+    transition: left 0.25s linear;
   }
   .toggle:hover .toggle-switch:before {
     background: linear-gradient(to bottom, #fff 0%, #fff 100%);
@@ -143,6 +148,7 @@
 
   .butto {
     display: flex;
+    align-items: center;
   }
 }
 
@@ -178,12 +184,17 @@
   .mobile-menu-open_icon {
     background-color: transparent;
   }
-  .dark .mobile-menu-open_icon{
-      fill: white;
+  .dark .mobile-menu-open_icon {
+    fill: white;
   }
   .toggle {
     bottom: auto;
   }
+
+  .buttons {
+    align-items: center;
+  }
+
   .mobile-menu-new {
     position: fixed;
     width: 100%;
@@ -267,7 +278,7 @@
     height: 24px;
     position: relative;
     vertical-align: middle;
-    transition: background 0.25s;
+    transition: background 0.25s linear;
   }
   .toggle-switch:before,
   .toggle-switch:after {
@@ -307,23 +318,24 @@
     top: 2px;
   }
   .toggle-switch {
-    display:none;
+    display: none;
+  }
 }
-}
-
 
 @media screen and (min-width: 768px) {
   .container {
     min-width: 768px;
   }
-  .mobile-menu-new{
+  .mobile-menu-new {
     display: none;
   }
-  .mobile-menu-open_icon{
+  .mobile-menu-open_icon {
     display: none;
   }
-  .mobile-menu-open{
-    display:none;
+  .mobile-menu-open {
+    display: none;
   }
-
+  .butto {
+    gap: 18px;
+  }
 }
