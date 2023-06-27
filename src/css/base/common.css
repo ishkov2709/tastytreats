@@ -72,8 +72,7 @@ svg {
 
 @media screen and (max-width: 767px) {
   .container {
-    min-width: 320px;
-    max-width: 478px;
+    min-width: 375px;
 
     padding: 0 20px;
   }
