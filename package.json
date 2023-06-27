@@ -18,6 +18,7 @@
     "url": "https://github.com/ishkov2709/tastytreats-GROUP3/issues"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^1.4.0",
     "lodash.debounce": "^4.0.8",
     "modern-normalize": "^1.1.0",

@@ -18,6 +18,10 @@
     margin-bottom: 100px;
   }
 }
+.hero-container {
+  margin: 0 auto;
+  padding-left: 20px;
+}
 
 @media screen and (min-width: 1280px) {
   .hero-container {
@@ -252,7 +256,7 @@
 }
 
 .swiper-pagination-bullet {
-  opacity: 1;
+  opacity: 1 !important;
   background-color: var(--primaty-black-color) !important;
 }
 
