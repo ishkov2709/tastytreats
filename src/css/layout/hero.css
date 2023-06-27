@@ -18,6 +18,10 @@
     margin-bottom: 100px;
   }
 }
+.hero-container {
+  margin: 0 auto;
+  padding-left: 20px;
+}
 
 @media screen and (min-width: 1280px) {
   .hero-container {
@@ -102,7 +106,6 @@
 
 @media screen and (min-width: 768px) {
   .order-now-btn {
-    margin-bottom: 64px;
     padding: 14px 28px;
   }
 }
@@ -252,7 +255,7 @@
 }
 
 .swiper-pagination-bullet {
-  opacity: 1;
+  opacity: 1 !important;
   background-color: var(--primaty-black-color) !important;
 }
 
