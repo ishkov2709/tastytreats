@@ -251,15 +251,15 @@
   }
 }
 
-.swiper-pagination {
-  bottom: 0% !important;
+#hero-swiper-pagination {
+  bottom: 0%;
 }
 
-.swiper-pagination-bullet {
-  opacity: 1 !important;
-  background-color: var(--primaty-black-color) !important;
+.hero-slider .swiper-pagination-bullet {
+  opacity: 1;
+  background-color: var(--primaty-black-color);
 }
 
-.swiper-pagination-bullet-active {
-  background-color: var(--accent-color) !important;
+.hero-slider .swiper-pagination-bullet-active {
+  background-color: var(--accent-color);
 }
