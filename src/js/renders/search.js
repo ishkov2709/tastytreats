@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import { searchImages } from '../service/categorySearch';
-import Notiflix from 'notiflix';
+import Notiflix, { Loading } from 'notiflix';
 
 import renderItem from './renders';
 import startPagination from '../utils/pagination';
@@ -10,14 +10,14 @@ import { OpenModal } from '../utils/modal-recipes';
 // Refs
 
 const searchInput = document.querySelector('.search-input');
-const recipeContainer = document.querySelector('#image-container');
+export const recipeContainer = document.querySelector('#image-container');
 const paginationBox = document.getElementById('pagination');
 const spinner = document.getElementById('spinner');
 
 // Vars
 
 let prevSearch = '';
-let searchQuery = '';
+export let searchQuery = '';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -115,6 +115,10 @@ function hendleClickOnRecipes({ target }) {
   if (currentBtn.name === 'details') {
     OpenModal(currentBtn);
   }
+}
+
+export function setSearchQueryName(name = '') {
+  searchQuery = name;
 }
 
 const debouncedHandleSearch = debounce(handleSearch, DEBOUNCE_DELAY);
