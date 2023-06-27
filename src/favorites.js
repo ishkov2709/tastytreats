@@ -1,4 +1,7 @@
 import './js/utils/localSctorage';
+import './js/utils/switchTheme.js';
+import './js/utils/mobile-menu.js';
+
 // import { OpenModal } from './js/utils/modal-recipes.js'
 import renderItem from './js/renders/renders.js';
 // import hendleClickOnRecipes from './js/renders/search.js';
@@ -28,5 +31,4 @@ function generateStorageList() {
   }
    refs.warning.hidden = false;
 }
-
 

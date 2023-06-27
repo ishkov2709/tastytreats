@@ -5,14 +5,17 @@
 /* layouts */
 
 @import url('./layout/hero.css');
-@import url('./layout/all-categories.css');
 @import url('./layout/popular.css');
 @import url('./layout/search.css');
 @import url('./layout/favorites-hero.css');
 @import url('./layout/favorites-list.css');
+@import url('./layout/all-categories.css');
+@import url('./layout/header.css');
 @import url('./layout/modal-recipes.css');
+
 /* components */
 
 @import url('./components/buttons.css');
 @import url('./components/recipte-item.css');
 @import url('./components/pagination.css');
+@import url('./components/ontopbtn.css');

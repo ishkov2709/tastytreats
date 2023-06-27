@@ -1,5 +1,4 @@
 .popular {
-  padding-top: 80px;
   width: 100%;
   display: block;
   padding-left: 0;
@@ -7,6 +6,9 @@
 
 @media screen and (max-width: 767px) {
   .popular {
+    width: 335px;
+    margin: 0 auto;
+
     order: 3;
   }
 }
@@ -14,7 +16,6 @@
 @media screen and (min-width: 768px) {
   .popular {
     width: 176px;
-    padding-top: 64px;
   }
 }
 @media screen and (min-width: 1280px) {
