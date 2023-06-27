@@ -25,6 +25,12 @@
   padding-right: 0;
 }
 
+@media screen and (min-width: 768px) {
+  .hero-container {
+    padding-left: 32px;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .hero-container {
     display: flex;

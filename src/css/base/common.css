@@ -72,7 +72,7 @@ svg {
 
 @media screen and (max-width: 767px) {
   .container {
-    min-width: 375px;
+    min-width: 320px;
     max-width: 478px;
 
     padding: 0 20px;
@@ -83,13 +83,15 @@ svg {
   .container {
     width: 768px;
 
-    padding: 0 15px;
+    padding: 0 32px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     width: 1110px;
+
+    padding: 0 15px;
   }
 }
 

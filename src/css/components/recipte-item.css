@@ -9,6 +9,17 @@
   border-radius: 14px;
 }
 
+@media screen and (max-width: 1279px) {
+  .recipe-item:nth-child(2n),
+  .recipe-item:last-child {
+    margin-right: 0;
+  }
+
+  .recipe-item:nth-last-child(-n + 2) {
+    margin-bottom: 0;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .recipe-item {
     width: 335px;
@@ -27,15 +38,6 @@
 
     display: inline-flex;
     margin: 0 16px 16px 0;
-  }
-
-  .recipe-item:nth-child(2n),
-  .recipe-item:last-child {
-    margin-right: 0;
-  }
-
-  .recipe-item:nth-last-child(-n + 2) {
-    margin-bottom: 0;
   }
 }
 
