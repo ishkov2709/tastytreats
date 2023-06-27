@@ -91,6 +91,7 @@
   cursor: pointer;
   margin-bottom: 48px;
   background-color: var(--primary-white-color);
+  color: #050505;
   font-size: 14px;
   font-family: Inter;
   font-weight: 500;
@@ -112,24 +113,6 @@
   .order-now-btn {
     margin-bottom: 0;
   }
-}
-
-@media screen and (min-width: 768px) {
-  .order-now-tel {
-    margin-bottom: 64px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .order-now-tel {
-    margin-bottom: 0;
-  }
-}
-
-.order-now-tel {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: var(--primaty-black-color);
 }
 
 .hero-slider {
