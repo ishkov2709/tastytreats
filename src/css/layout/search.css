@@ -16,6 +16,8 @@
 
 .search-input-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .search-icon {
@@ -23,7 +25,6 @@
   top: 50%;
   left: 20px;
   transform: translateY(-50%);
-
   fill: rgba(5, 5, 5, 0.5);
 }
 
@@ -36,10 +37,8 @@
   width: 295px;
   height: auto;
   padding: 14px 18px 14px 48px;
-
   font-size: 16px;
   font-weight: 500;
-
   border-radius: 15px;
   border: 1px solid rgba(5, 5, 5, 0.2);
   outline: none;
@@ -73,10 +72,6 @@
   }
 }
 
-.input-section {
-  margin-bottom: 32px;
-}
-
 @media screen and (max-width: 767px) {
   .image-container {
     display: block;
@@ -86,41 +81,101 @@
 
 @media screen and (min-width: 768px) {
   .image-container {
-    min-height: 844px;
-
     display: flex;
     flex-wrap: wrap;
     column-gap: 16px;
     row-gap: 16px;
-
     margin-bottom: 64px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .image-container {
-    min-height: 910px;
-
     row-gap: 32px;
   }
 }
 
-.spinner {
-  display: none;
+.search-section {
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.list-filter {
+  height: 46px;
+  color: rgba(5, 5, 5, 0.5);
+  padding-left: 18px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.list-time {
+  width: 160px;
+}
+
+.list-area {
+  width: 161px;
+}
+
+.list-ingred {
+  width: 188px;
+}
+
+.select select {
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .search-section {
+    gap: 18px;
+  }
+
+  .list-time {
+    width: 125px;
+  }
+
+  .list-area {
+    width: 141px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .search-section {
+    gap: 16px;
+  }
+
+  .search-input {
+    width: 278px;
+  }
+}
+
+/* spinner */
+.spinner-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 3s linear infinite;
+}
+
+.search-section {
+  position: relative;
+}
+
+.search-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.spinner-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 4px solid rgba(0, 0, 0, 0.2);
-  border-top-color: #000;
-  animation: spin 1s ease-in-out infinite;
-}
 
 @keyframes spin {
   0% {
@@ -131,16 +186,11 @@
   }
 }
 
-#spinner {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px); /* Позиціонування під інпутом */
-  left: 50%;
-  transform: translateX(-50%);
-  animation: spin 2s infinite linear;
-}
 
-#spinner img {
-  width: 20px;
-  height: 20px;
-}
+
+
+
+
+
+
+

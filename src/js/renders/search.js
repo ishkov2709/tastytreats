@@ -102,6 +102,7 @@ function hendleClickOnRecipes({ target }) {
   }
 }
 
+
 const debouncedHandleSearch = debounce(handleSearch, DEBOUNCE_DELAY);
 
 searchInput.addEventListener('input', debouncedHandleSearch);
