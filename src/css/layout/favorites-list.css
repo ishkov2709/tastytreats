@@ -8,6 +8,7 @@
         width: 100%;
         display: flex;
         margin-top: 24px;
+        justify-content: flex-start;
         gap: 16px;
     }
   }
