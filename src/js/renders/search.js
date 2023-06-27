@@ -106,5 +106,4 @@ const debouncedHandleSearch = debounce(handleSearch, DEBOUNCE_DELAY);
 
 searchInput.addEventListener('input', debouncedHandleSearch);
 
-
 recipeContainer.addEventListener('click', hendleClickOnRecipes);

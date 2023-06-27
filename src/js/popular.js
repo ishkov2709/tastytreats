@@ -1,11 +1,6 @@
 
-import axios from "axios";
-
-async function fetchPopularRecipes() {
-    const url = `https://tasty-treats-backend.p.goit.global/api/recipes/popular`
-    const res = await axios.get(url);
-    return res.data;
-}
+import { fetchPopularRecipes } from './service/API.js';
+import { OpenModal } from './utils/modal-recipes.js';
 
 const popularList = document.querySelector('.js-popular-list');
 document.addEventListener("DOMContentLoaded", onReload);
@@ -36,7 +31,7 @@ function renderPopularRecipeMarkup({title, description, _id, preview}){
     return `
     <li class="list-item" data-id="${_id}">
         <img class="img-popular" src="${preview}" alt="${title}">
-        <div class="popular-text">
+        <div class="popular-text" data-id=${_id}>
             <h3 class="popular-title">${title}</h3>
             <p class="popular-desc">${description}</p>
         </div>
@@ -52,3 +47,9 @@ function onError(){
     popularList.innerHTML = '';
 }
 
+popularList.addEventListener('click', onPopularClick);
+
+function onPopularClick(evt){
+    const recipeId = evt.target.parentNode;
+    OpenModal(recipeId);
+}
