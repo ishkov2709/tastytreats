@@ -52,8 +52,8 @@ export async function searchImagesAndDisplay(currentPage = 1) {
     );
     if (!results.length) throw new Error('No result');
     const recipes = await [
-      ...results.map(({ title, description, preview, rating, _id }) =>
-        renderItem(title, description, preview, rating, _id)
+      ...results.map(({ title, description, preview, rating, _id, category }) =>
+        renderItem(title, description, preview, rating, _id, category)
       ),
     ].join('');
     if (totalPages > 1) {
