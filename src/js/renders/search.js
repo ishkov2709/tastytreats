@@ -16,9 +16,20 @@ const spinner = document.getElementById('spinner');
 
 // Vars
 
+let prevSearch = '';
 let searchQuery = '';
 
 const DEBOUNCE_DELAY = 300;
+
+/**
+  |============================
+  | Base Fetch
+  |============================
+*/
+
+searchImagesAndDisplay();
+
+/////////////////////////
 
 function handleSearch({ target }) {
   if (!target.value.trim()) return (searchInput.value = '');
@@ -63,11 +74,15 @@ export async function searchImagesAndDisplay(currentPage = 1) {
       paginationBox.style.display = 'none';
     }
     recipeContainer.innerHTML = recipes;
-    searchInput.value = '';
+
+    prevSearch = searchQuery;
   } catch (error) {
-    console.error(error);
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
+
+    prevSearch ? (searchQuery = prevSearch) : (searchQuery = '');
+
+    searchImagesAndDisplay();
   } finally {
     hideSpinner();
   }
