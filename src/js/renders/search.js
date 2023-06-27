@@ -89,6 +89,8 @@ function hendleClickOnRecipes({ target }) {
   }
 }
 
+export default hendleClickOnRecipes;
+
 searchInput.addEventListener('input', debounce(handleSearch, DEBOUNCE_DELAY));
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);
