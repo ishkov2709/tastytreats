@@ -40,7 +40,7 @@
 }
 
 .up-button__icon {
-  fill: var(--accent-color);
+  color: var(--accent-color);
   position: relative;
   top: 20px;
   left: 0;
