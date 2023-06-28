@@ -9,3 +9,4 @@ import './js/utils/mobile-menu.js';
 import './js/utils/modal-recipes.js';
 import './js/popular.js';
 import './js/renders/search.js';
+import './js/utils/ontopbtn.js';

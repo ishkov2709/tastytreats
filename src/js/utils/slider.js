@@ -1,4 +1,4 @@
-import Swiper, { Pagination } from 'swiper';
+import Swiper, { Pagination, Autoplay} from 'swiper';
 import '../../../node_modules/swiper/swiper.css';
 import '../../../node_modules/swiper/modules/pagination/pagination-element.min.css'
 
@@ -16,11 +16,14 @@ async function createSlider() {
       await addIventsInSlick(markup);
     
       new Swiper(".swiper", {
-       modules: [Pagination],
+       modules: [Pagination, Autoplay],
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
-      },
+        },
+       autoplay: {
+   delay: 6000,
+ },
     });
     } catch {
     }

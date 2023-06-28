@@ -46,13 +46,14 @@ export function ratingScale(rating) {
           </ul>`;
 }
 
-function renderItem(title, description, preview, rating, id) {
+function renderItem(title, description, preview, rating, id, category) {
   const infoRecipe = {
     title,
     description,
     preview,
     rating,
     id,
+    category,
   };
   const fixRating = rating.toFixed(1);
   return `<div class='recipe-item' 
