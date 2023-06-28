@@ -22,9 +22,12 @@ async function createSlider() {
         clickable: true,
         },
        autoplay: {
-   delay: 6000,
- },
-    });
+         delay: 6000,
+        },
+        
+      });
+      // const pagBullet = document.querySelectorAll('.swiper-pagination-bullet')
+      //  console.log(pagBullet)
     } catch {
     }
 }

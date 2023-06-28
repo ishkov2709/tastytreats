@@ -4,7 +4,7 @@ import Notiflix, { Loading } from 'notiflix';
 
 import renderItem from './renders';
 import startPagination from '../utils/pagination';
-
+import changeThemePagination from '../utils/switchTheme'
 import { OpenModal } from '../utils/modal-recipes';
 
 // Refs
@@ -69,22 +69,28 @@ export async function searchImagesAndDisplay(currentPage = 1) {
     ].join('');
     if (totalPages > 1) {
       paginationBox.style.display = 'block';
-      startPagination(page, perPage, totalPages, searchImagesAndDisplay);
+      await startPagination(page, perPage, totalPages, searchImagesAndDisplay);
+
+      
     } else {
       paginationBox.style.display = 'none';
     }
     recipeContainer.innerHTML = recipes;
-
+  
     prevSearch = searchQuery;
   } catch (error) {
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
 
     prevSearch ? (searchQuery = prevSearch) : (searchQuery = '');
+    
+ 
+
 
     searchImagesAndDisplay();
   } finally {
     hideSpinner();
+    changeThemePagination()
   }
 }
 
@@ -126,3 +132,4 @@ const debouncedHandleSearch = debounce(handleSearch, DEBOUNCE_DELAY);
 searchInput.addEventListener('input', debouncedHandleSearch);
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);
+

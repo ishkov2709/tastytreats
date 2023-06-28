@@ -1,24 +1,29 @@
-.favorite-list{
-    display: block;
+
+.favorite-list {
+  display: block;
+  margin-top: 24px;
 }
 
 @media screen and (min-width: 768px) {
-    .favorite-list{
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 24px;
-        justify-content: flex-start;
-        gap: 16px;
-    }
+  .favorite-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 64px;
   }
-  
-  @media screen and (min-width: 1280px) {
-    .favorite-list{
-        margin-top: 32px;
-    }
-  }
+}
 
+@media screen and (min-width: 1280px) {
+  .favorite-list {
+    margin-top: 32px;
+  }
+}
+
+
+=======
   #favorites-container .recipe-item {
     margin-bottom: 24px;
     width: 335px;
@@ -36,6 +41,7 @@
     }
   }
 
+
   @media screen and (min-width: 1280px) {
     #favorites-container .recipe-item {
       width: 258px;
@@ -43,12 +49,24 @@
     }
   }
 
+
+.empty-storage {
+  display: block;
+  text-align: center;
+  margin-top: 365px;
+  font-size: 14px;
+}
+
+@media screen and (min-width: 768px) {
   .empty-storage {
+
     display: block;
     text-align: center;
     margin-top: 280px;
     font-size: 14px;
   }
+}
+
 
   @media screen and (min-width: 768px) {
     .empty-storage {
@@ -75,10 +93,12 @@
   }
 
   .f-hero-img {
-    display: none;
+    display: block;
     width: 100%;
     height: auto;
   }
+
+
 
   @media screen and (min-width: 768px) {
     .f-hero-img {

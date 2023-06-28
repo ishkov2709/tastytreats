@@ -115,3 +115,21 @@ svg {
     max-height: 1244px;
   }
 }
+
+.dark-theme-add {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: inherit;
+}
+
+.light-theme-add {
+  color: rgba(5, 5, 5, 0.5);
+  background-color: inherit;
+}
+
+.light-theme-add-pagination {
+  color: var(--primaty-black-color);
+}
+
+.dark-theme-add-pagination {
+  color: var(--primary-white-color);
+}
