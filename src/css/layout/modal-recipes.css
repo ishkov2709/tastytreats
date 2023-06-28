@@ -176,13 +176,18 @@
 .ingridients {
   margin: 0;
   padding: 0 30px 0 0;
-  height: 204px;
 }
 
 @media screen and (max-width: 767px) {
   .ingridients {
     margin: 0 0 40px 0;
-    height: 224px;
+    max-height: 224px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ingridients {
+    height: 204px;
   }
 }
 
