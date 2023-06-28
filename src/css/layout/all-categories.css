@@ -15,9 +15,11 @@
   column-gap: 18px;
   width: 100%;
   padding: 0;
-  color: #05050580;
+  /* color: #05050580; */
+  color: inherit;
   border: none;
-  background-color: white;
+  /* background-color: white; */
+  background-color: inherit;
   cursor: pointer;
   text-align: start;
 }
@@ -41,14 +43,18 @@ button.active {
 .button-Allcategories {
   cursor: pointer;
   margin-bottom: 48px;
-  background-color: var(--primary-white-color);
-  color: #05050580;
+  /* background-color: var(--primary-white-color);
+  color: #05050580; */
+  color: inherit;
+  background-color: inherit;
   font-size: 18px;
   font-family: Inter;
   font-weight: 500;
   padding: 14px 28px;
-  border-radius: 12px;
-  border: 1px solid #05050580;
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  /* border: 1px solid #05050580; */
 }
 
 @media screen and (max-width: 767px) {

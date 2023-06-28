@@ -4,7 +4,7 @@
 }
 
 .search-label {
-  color: rgba(5, 5, 5, 0.5);
+  /* color: rgba(5, 5, 5, 0.5); */
   font-size: 14px;
   font-family: Inter;
   font-weight: 500;
@@ -23,8 +23,8 @@
   top: 50%;
   left: 20px;
   transform: translateY(-50%);
-
-  fill: rgba(5, 5, 5, 0.5);
+  color: inherit;
+  /* fill: rgba(5, 5, 5, 0.5); */
 }
 
 .search-icon img {
@@ -39,11 +39,14 @@
 
   font-size: 16px;
   font-weight: 500;
-
+  color: inherit;
   border-radius: 15px;
-  border: 1px solid rgba(5, 5, 5, 0.2);
+  border-width: 1px;
+  border-style: solid;
   outline: none;
   box-sizing: border-box;
+
+  background-color: inherit;
 }
 
 @media screen and (max-width: 767px) {
