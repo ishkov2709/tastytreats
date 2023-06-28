@@ -1,10 +1,13 @@
 .is-hidden {
   display: none;
 }
+
 .overflow-hidden {
   overflow: hidden;
 }
+
 /* Background */
+
 .backdrop-recipes {
   position: fixed;
   z-index: 2;
