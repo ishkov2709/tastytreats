@@ -88,7 +88,7 @@ function toggleFavriteRecipe(currentBtn) {
   }
 }
 
-function hendleClickOnRecipes({ target }) {
+export function hendleClickOnRecipes({ target }) {
   if (!target.closest('button')) return;
 
   const currentBtn = target.closest('button');
