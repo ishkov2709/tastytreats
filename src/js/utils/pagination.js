@@ -1,7 +1,6 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
-
 function resizeVisPage() {
   const screenWidth = window.innerWidth;
 
@@ -15,6 +14,7 @@ function resizeVisPage() {
 }
 
 function startPagination(page, perPage, totalPages, callback) {
+  console.log(page, perPage, totalPages, callback);
   const options = {
     totalItems: Number(perPage) * Number(totalPages),
     itemsPerPage: Number(perPage),
@@ -24,7 +24,7 @@ function startPagination(page, perPage, totalPages, callback) {
     omitMiddlePages: false,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
-   template: {
+    template: {
       page: '<a href="#" class="tui-page-btn pag-page pag-page-next-light">{{page}}</a>',
       currentPage:
         '<strong class="tui-page-btn tui-is-selected pag-active-light">{{page}}</strong>',
@@ -51,5 +51,3 @@ function startPagination(page, perPage, totalPages, callback) {
 }
 
 export default startPagination;
-
-

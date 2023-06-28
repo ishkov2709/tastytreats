@@ -1,75 +1,77 @@
-.favorite-list{
-    display: block;
-    margin-top: 24px;
+.favorite-list {
+  display: block;
+  margin-top: 24px;
 }
 
 @media screen and (min-width: 768px) {
-    .favorite-list{
-        width: 100%;
-        display: flex;
-        margin-top: 24px;
-        justify-content: flex-start;
-        gap: 16px;
-    }
+  .favorite-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 64px;
   }
-  
-  @media screen and (min-width: 1280px) {
-    .favorite-list{
-        margin-top: 32px;
-    }
-  }
+}
 
-.recipe-item{
-    margin-bottom: 24px;
-    width: 335px;
-    height: 335px;
+@media screen and (min-width: 1280px) {
+  .favorite-list {
+    margin-top: 32px;
+  }
+}
+
+.recipe-item {
+  margin-bottom: 24px;
+  width: 335px;
+  height: 335px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .recipe-item {
+    margin-left: 0;
+    margin-right: 0;
+    width: 224px;
+    height: 244px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .recipe-item {
+    width: 258px;
+    height: 287px;
+  }
+}
+
+.empty-storage {
+  display: block;
+  text-align: center;
+  margin-top: 365px;
+  font-size: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .empty-storage {
+    width: 481px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 180px;
+    font-size: 16px;
+  }
+}
+
+.f-hero-img {
+  display: none;
+  width: 100%;
+  height: auto;
 }
 
 @media screen and (min-width: 768px) {
-    .recipe-item{
-        margin-left: 0;
-        margin-right: 0;
-        width: 224px;
-        height: 244px;
-    }
-  }
-
-  @media screen and (min-width: 1280px) {
-    .recipe-item{
-        width: 258px;
-        height: 287px;
-    }
-  }
-
-  .empty-storage {
-    display: block;
-    text-align: center;
-    margin-top: 365px;
-    font-size: 14px;
-  }
-
-  @media screen and (min-width: 768px) {
-    .empty-storage {
-      width: 481px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 180px;
-      font-size: 16px;
-    }
-  }
-
   .f-hero-img {
-    display: none;
+    display: block;
     width: 100%;
     height: auto;
   }
-
-  @media screen and (min-width: 768px) {
-    .f-hero-img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-  }
+}
