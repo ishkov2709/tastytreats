@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     bodyScrollLock[scrollLockMethod](document.body);
   };
 
-  console.log(document.body);
-
   if (mobileMenu && openMenuBtn && closeMenuBtn) {
     openMenuBtn.addEventListener('click', toggleMenu);
     closeMenuBtn.addEventListener('click', toggleMenu);

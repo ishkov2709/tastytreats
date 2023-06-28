@@ -1,6 +1,6 @@
 import svg from '../../images/sprite.svg';
 
-function measureRating(position, pating) {
+export function measureRating(position, pating) {
   if (position <= pating) {
     return 'rate-item-active';
   }
@@ -16,7 +16,7 @@ function checkOnFavor(id) {
   return '';
 }
 
-function ratingScale(rating) {
+export function ratingScale(rating) {
   return `<ul class='rate-list'>
              <li class=${measureRating(1, rating)}>
               <svg class="star-icon" width="18" height="18">
@@ -46,13 +46,14 @@ function ratingScale(rating) {
           </ul>`;
 }
 
-function renderItem(title, description, preview, rating, id) {
+function renderItem(title, description, preview, rating, id, category) {
   const infoRecipe = {
     title,
     description,
     preview,
     rating,
     id,
+    category,
   };
   const fixRating = rating.toFixed(1);
   return `<div class='recipe-item' 
