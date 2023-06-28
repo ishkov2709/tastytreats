@@ -1,6 +1,7 @@
 import './js/utils/localSctorage';
 import './js/utils/switchTheme.js';
 import './js/utils/mobile-menu.js';
+import './js/utils/setClass.js'
 
 // import { OpenModal } from './js/utils/modal-recipes.js'
 import renderItem from './js/renders/renders.js';
