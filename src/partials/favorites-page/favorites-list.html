@@ -1,17 +1,17 @@
 <section>
-  <div class="container">
-    <ul class="favorite-categories"></ul>
-    <ul class="favorite-list"></ul>
+  <div id="favorites-container" class="container">
+    <div class="favorite-categories">
+      <button class="button-fav all-btn isHidden">All  categories</button>
+      <ul class="rendered-buttons"></ul>
+    </div>
+    <ul id="image-container" class="favorite-list"></ul>
     <div id="pagination" class="tui-pagination"></div>
-    <div class="empty-storage">
+    <div class="empty-storage isHidden">
       <svg class="cook-hat" width="68" height="58">
-        <use href="./images/sprite.svg"></use>
+         <use href="./images/sprite.svg#cook-hat"></use>
       </svg>
-      <p class="empty-storage-txt" hidden>
-        It appears that you haven't added any recipes to your favorites yet. To
-        get started, you can add recipes that you like to your favorites for
-        easier access in the future.
-      </p>
+      <p class="empty-storage-txt">It appears that you haven't added any recipes to your favorites yet. To get started, you can add recipes that you like to your favorites for easier access in the future.</p>
     </div>
   </div>
 </section>
+
