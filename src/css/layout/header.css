@@ -40,6 +40,17 @@ body.dark {
   font-size: 15px;
 }
 /* ----------------------- */
+
+body.home #favoriteLink,
+body.favorite #homeLink {
+  color: var(--primaty-black-color);
+}
+
+body.home.dark #favoriteLink,
+body.favorite.dark #homeLink {
+  color: var(--primary-white-color);
+}
+
 body.home #homeLink {
   color: var(--accent-color);
 }
@@ -366,6 +377,7 @@ body.favorite #favoriteLink:hover {
   }
 }
 
-.mobile-menu-open_icon {
+.dark .mobile-menu-open_icon,
+.mobile-menu-open_icon.icon-close {
   stroke: var(--primary-white-color);
 }
