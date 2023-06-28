@@ -27,7 +27,6 @@
   transform: translateY(-50%);
   color: inherit;
   /* fill: rgba(5, 5, 5, 0.5); */
-
 }
 
 .search-icon img {
@@ -88,7 +87,7 @@
 @media screen and (min-width: 768px) {
   .image-container {
     min-height: 844px;
-    
+
     margin-bottom: 64px;
   }
 }
@@ -180,7 +179,6 @@
   transform: translate(-50%, -50%);
 }
 
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -190,11 +188,10 @@
   }
 }
 
-
-
-
-
-
-
-
-
+@media screen and (min-width: 768px) {
+  .input-section {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+}
