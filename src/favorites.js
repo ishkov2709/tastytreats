@@ -1,6 +1,7 @@
 import './js/utils/localSctorage';
 import './js/utils/switchTheme.js';
 import './js/utils/mobile-menu.js';
+import './js/utils/setClass.js'
 
 import { OpenModal } from './js/utils/modal-recipes.js'
 import renderItem from './js/renders/renders.js';
@@ -27,11 +28,16 @@ function onFavoritesRealod() {
 }
 
 function generateStorageList() {
-    const storage = localStorage.getItem('favorites');
-    const data = JSON.parse(storage);
+  const storage = localStorage.getItem('favorites');
+  const data = JSON.parse(storage);
   if (storage) {
-   return data.reduce((markup, {title, description, preview, rating, id}) => markup + renderItem(title, description, preview, rating, id), '');  
+    return data.reduce(
+      (markup, { title, description, preview, rating, id }) =>
+        markup + renderItem(title, description, preview, rating, id),
+      ''
+    );
   }
+  
   refs.warning.classList.remove('isHidden');
 }
 
@@ -69,6 +75,3 @@ function filterByCategory(evt){
 function generateCategoryMarkup(categoryRecipes){
     return categoryRecipes.reduce((markup, {title, description, preview, rating, id}) => markup + renderItem(title, description, preview, rating, id), '');
 }
-
-
-

@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import { searchImages } from '../service/categorySearch';
-import Notiflix from 'notiflix';
+import Notiflix, { Loading } from 'notiflix';
 
 import renderItem from './renders';
 import startPagination from '../utils/pagination';
@@ -10,15 +10,26 @@ import { OpenModal } from '../utils/modal-recipes';
 // Refs
 
 const searchInput = document.querySelector('.search-input');
-const recipeContainer = document.querySelector('#image-container');
+export const recipeContainer = document.querySelector('#image-container');
 const paginationBox = document.getElementById('pagination');
 const spinner = document.getElementById('spinner');
 
 // Vars
 
-let searchQuery = '';
+let prevSearch = '';
+export let searchQuery = '';
 
 const DEBOUNCE_DELAY = 300;
+
+/**
+  |============================
+  | Base Fetch
+  |============================
+*/
+
+searchImagesAndDisplay();
+
+/////////////////////////
 
 function handleSearch({ target }) {
   if (!target.value.trim()) return (searchInput.value = '');
@@ -63,11 +74,15 @@ export async function searchImagesAndDisplay(currentPage = 1) {
       paginationBox.style.display = 'none';
     }
     recipeContainer.innerHTML = recipes;
-    searchInput.value = '';
+
+    prevSearch = searchQuery;
   } catch (error) {
-    console.error(error);
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
+
+    prevSearch ? (searchQuery = prevSearch) : (searchQuery = '');
+
+    searchImagesAndDisplay();
   } finally {
     hideSpinner();
   }
@@ -100,6 +115,10 @@ export function hendleClickOnRecipes({ target }) {
   if (currentBtn.name === 'details') {
     OpenModal(currentBtn);
   }
+}
+
+export function setSearchQueryName(name = '') {
+  searchQuery = name;
 }
 
 const debouncedHandleSearch = debounce(handleSearch, DEBOUNCE_DELAY);
