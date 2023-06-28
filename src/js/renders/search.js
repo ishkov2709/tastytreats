@@ -1,11 +1,12 @@
 import debounce from 'lodash.debounce';
-import { searchImages } from '../service/categorySearch';
+import { searchOnTitle } from '../service/categorySearch';
 import Notiflix, { Loading } from 'notiflix';
 
 import renderItem from './renders';
 import startPagination from '../utils/pagination';
-import changeThemePagination from '../utils/switchTheme'
+import changeThemePagination from '../utils/switchTheme';
 import { OpenModal } from '../utils/modal-recipes';
+import { setActiveClass } from '../utils/scrollbar';
 
 // Refs
 
@@ -36,7 +37,7 @@ function handleSearch({ target }) {
 
   recipeContainer.innerHTML = '';
   searchQuery = customizeText(target.value);
-
+  setActiveClass();
   searchImagesAndDisplay();
 }
 
@@ -53,11 +54,14 @@ function hideSpinner() {
   spinner.style.display = 'none';
 }
 
-export async function searchImagesAndDisplay(currentPage = 1) {
+export async function searchImagesAndDisplay(
+  currentPage = 1,
+  callback = searchOnTitle
+) {
   try {
     showSpinner();
 
-    const { page, perPage, totalPages, results } = await searchImages(
+    const { page, perPage, totalPages, results } = await callback(
       searchQuery,
       currentPage
     );
@@ -70,27 +74,22 @@ export async function searchImagesAndDisplay(currentPage = 1) {
     if (totalPages > 1) {
       paginationBox.style.display = 'block';
       await startPagination(page, perPage, totalPages, searchImagesAndDisplay);
-
-      
     } else {
       paginationBox.style.display = 'none';
     }
     recipeContainer.innerHTML = recipes;
-  
+
     prevSearch = searchQuery;
   } catch (error) {
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
 
     prevSearch ? (searchQuery = prevSearch) : (searchQuery = '');
-    
- 
-
 
     searchImagesAndDisplay();
   } finally {
     hideSpinner();
-    changeThemePagination()
+    changeThemePagination();
   }
 }
 
@@ -132,4 +131,3 @@ const debouncedHandleSearch = debounce(handleSearch, DEBOUNCE_DELAY);
 searchInput.addEventListener('input', debouncedHandleSearch);
 
 recipeContainer.addEventListener('click', hendleClickOnRecipes);
-

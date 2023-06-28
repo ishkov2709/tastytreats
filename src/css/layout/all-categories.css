@@ -30,7 +30,7 @@
   padding-bottom: 9px;
 }
 
-button.active {
+button.isUse {
   color: var(--accent-color);
 }
 
@@ -83,4 +83,13 @@ button.active {
   .container-allcategories {
     width: 235px;
   }
+}
+
+.button-Allcategories.isUse {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.button-Allcategories.isUse:hover {
+  color: var(--primary-white-color);
 }

@@ -19,7 +19,18 @@ function resizePage() {
   }
 }
 
-export async function searchImages(searchQuery, page) {
+export async function searchOnTitle(searchQuery, page) {
+  const apiUrl = `${BASE_URL}?title=${searchQuery}&page=${page}&${resizePage()}`;
+
+  try {
+    const { data } = await axios.get(apiUrl);
+    return data;
+  } catch (error) {
+    throw new Error('An error occurred while fetching images.');
+  }
+}
+
+export async function searchOnCategory(searchQuery, page) {
   const apiUrl = `${BASE_URL}?category=${searchQuery}&page=${page}&${resizePage()}`;
 
   try {
