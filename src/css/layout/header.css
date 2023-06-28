@@ -339,3 +339,7 @@ body.dark {
     gap: 18px;
   }
 }
+
+.mobile-menu-open_icon {
+  stroke: var(--primary-white-color);
+}
