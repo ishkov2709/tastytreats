@@ -81,6 +81,10 @@
   #pagination {
     margin-left: -230px;
   }
+
+  #favorites-container #pagination {
+    margin-left: auto;
+  }
 }
 @media screen and (max-width: 767px) {
   #pagination {
