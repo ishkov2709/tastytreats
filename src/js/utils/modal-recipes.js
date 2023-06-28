@@ -24,18 +24,17 @@ function CloseModal() {
   ToggleScroll();
 }
 function CloseOnClick(e) {
-  if (e.target.classList.contains("backdrop-recipes"))
-    CloseModal();
+  if (e.target.classList.contains('backdrop-recipes')) CloseModal();
 }
 function CloseOnBtnClick(e) {
-  if (e.key === "Escape") CloseModal();
+  if (e.key === 'Escape') CloseModal();
 }
 // bild the page
 
 async function genereteRecipe(id) {
   try {
     const recipe = await findRecipes(id);
-    
+
     addData(CreateMarkup(recipe));
     addScrollbarText();
   } catch (err) {
@@ -51,7 +50,7 @@ function CreateMarkup(data) {
   let tagslist = '';
   if (!tags[0]) {
     // document.querySelector(".recipe-tags").classList.add("is-hidden");
-    console.log('Zero');
+    // console.log('Zero');
   } else {
     for (let k = 0; k < tags.length; k++) {
       tagslist += `<li class="recipe-tag">#${tags[k]}</li>`;
@@ -61,15 +60,9 @@ function CreateMarkup(data) {
   for (let i = 0; i < ingr.length; i++) {
     ingrList += `<li class="recipe-ingridient">${ingr[i].name} <span class="recipe-ps">${ingr[i].measure}</span></li>`;
   }
-   
   const fixRating = data.rating.toFixed(1);
   const markup = `<div class="recipe-parts">
-    <iframe
-      class="recipe-frame"
-      src="${src}"
-      frameborder="0"
-      alt="${data.description}"
-    ></iframe>
+    ${checkSrc(src, data.description)}
     <div class="recipe-title">
       <h2 class="recipe-title-txt">${data.title}</h2>
       <div class="rating-part">
@@ -88,29 +81,44 @@ function CreateMarkup(data) {
   <p class="recipe-instr">${data.instructions}</p>
   </div>
 `;
-// scrollbarBox.insertAdjacentHTML('afterbegin',`<p class="recipe-instr">${data.instructions}</p>`);
+  // scrollbarBox.insertAdjacentHTML('afterbegin',`<p class="recipe-instr">${data.instructions}</p>`);
 
-// const scrollbarBox = document.querySelector('.recipe-instr');
-//   const scrollbar = SmoothScrollbar.init(scrollbarBox, {
-//       alwaysShowTracks: true
-//   });
+  // const scrollbarBox = document.querySelector('.recipe-instr');
+  //   const scrollbar = SmoothScrollbar.init(scrollbarBox, {
+  //       alwaysShowTracks: true
+  //   });
 
   return markup;
-
-  
 }
-function addScrollbarText (){
-const scrollbarBox = document.querySelector('.recipe-instr');
+function addScrollbarText() {
+  const scrollbarBox = document.querySelector('.recipe-instr');
   const scrollbar = SmoothScrollbar.init(scrollbarBox, {
-      alwaysShowTracks: true
+    alwaysShowTracks: true,
   });
   // scrollbarBox.appendChild(`<p class="recipe-instr">${instructions}</p>`);
+
+  const scrollbarIngs = document.querySelector('.ingridients');
+  const scrollbarSec = SmoothScrollbar.init(scrollbarIngs, {
+    alwaysShowTracks: true,
+  });
 }
- function addData(markup) {
-  
+function addData(markup) {
   refs.modalRecipes.insertAdjacentHTML('afterbegin', markup);
 }
 function ToggleScroll() {
   const body = document.querySelector('body');
   body.classList.toggle('overflow-hidden');
+}
+
+function checkSrc(url, description) {
+  if (url.endsWith('.jpg')) {
+    return `<img class="modal-img" src="${url}" alt="${description}">`;
+  } else {
+    return `<iframe
+      class="recipe-frame"
+      src="${url}"
+      frameborder="0"
+      alt="${description}"
+    ></iframe>`;
+  }
 }
