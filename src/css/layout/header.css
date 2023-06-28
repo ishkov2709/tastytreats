@@ -43,42 +43,37 @@ body.dark {
 body.home #homeLink {
   color: var(--accent-color);
 }
-body.home #homeLink:hover
-{
+body.home #homeLink:hover {
   color: var(--primary-white-color);
 }
 body.home #favoriteLink {
   color: var(--primaty-black-color);
 }
 
-body.home #favoriteLink:hover
- {
+body.home #favoriteLink:hover {
   color: var(--primary-white-color);
 }
 body.favorite #homeLink {
-  color: var(--primaty-black-color)
+  color: var(--primaty-black-color);
 }
-body.favorite #homeLink:hover
-{
- color: var(--primary-white-color);
-}
-
-body.favorite #favoriteLink
- {
-  color: var(--accent-color);
-}
-body.favorite #favoriteLink:hover
- {
+body.favorite #homeLink:hover {
   color: var(--primary-white-color);
 }
 
-.bounce{
+body.favorite #favoriteLink {
+  color: var(--accent-color);
+}
+body.favorite #favoriteLink:hover {
+  color: var(--primary-white-color);
+}
+
+.bounce {
   text-decoration: none;
   box-shadow: inset 0 0 0 0 black;
-  transition: color .3s ease-in-out, box-shadow .3s ease-in-out
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 .bounce:hover {
-  box-shadow: inset 200px 0 0 0 var(--accent-color);;
+  box-shadow: inset 200px 0 0 0 var(--accent-color);
 }
 .logo-tasty {
   color: var(--accent-color);
@@ -277,8 +272,24 @@ body.favorite #favoriteLink:hover
   .mobile-menu-nav-link {
     text-decoration: none;
     font-size: 12px;
-    color: #fff;
+    color: var(--text-white-color);
     margin: 0 auto;
+  }
+
+  .home .mobile-menu-nav-item:nth-child(1) .mobile-menu-nav-link {
+    color: var(--primary-white-color);
+  }
+
+  .favorite .mobile-menu-nav-item:nth-child(2) .mobile-menu-nav-link {
+    color: var(--primary-white-color);
+  }
+
+  .home.dark .mobile-menu-nav-item:nth-child(1) .mobile-menu-nav-link {
+    color: var(--accent-color);
+  }
+
+  .favorite.dark .mobile-menu-nav-item:nth-child(2) .mobile-menu-nav-link {
+    color: var(--accent-color);
   }
 
   .toggle-checkbox:checked + .toggle-switch {
