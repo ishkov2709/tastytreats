@@ -27,3 +27,8 @@ export async function fetchPopularRecipes() {
   const res = await axios.get(url);
   return res.data;
 }
+ export async function getRating (){
+  const url =`https://tasty-treats-backend.p.goit.global/api/recipes/${recipeId}/rating`
+  const res = await axios.patch(url)
+  return res.data
+ }
