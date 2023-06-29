@@ -58,6 +58,7 @@ export async function searchImagesAndDisplay(
   currentPage = 1,
   callback = searchOnTitle
 ) {
+  console.log(currentPage);
   try {
     showSpinner();
 
@@ -73,13 +74,17 @@ export async function searchImagesAndDisplay(
     ].join('');
     if (totalPages > 1) {
       paginationBox.style.display = 'block';
-      await startPagination(page, perPage, totalPages, searchImagesAndDisplay);
+      startPagination(page, perPage, totalPages, page => {
+        searchImagesAndDisplay(page, callback);
+      });
     } else {
       paginationBox.style.display = 'none';
     }
     recipeContainer.innerHTML = recipes;
 
     prevSearch = searchQuery;
+    console.log(prevSearch);
+    console.log(searchQuery);
   } catch (error) {
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');

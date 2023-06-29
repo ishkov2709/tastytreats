@@ -12,16 +12,22 @@ import startPagination from './js/utils/pagination';
 const refs = {
   favoriteCategoriesList: document.querySelector('.favorite-categories'),
   favoriteRecipesList: document.querySelector('.favorite-list'),
-  warning: document.querySelector('p'),
+  warning: document.querySelector('.empty-storage'),
   paginationBox: document.getElementById('pagination'),
   categoryBtn: document.querySelector('.favorite-categories'),
+  allBtn: document.querySelector('.all-btn'),
+  hiroImg: document.querySelector('.fav-hero'),
 };
 
-console.log(refs.warning);
+// Variables
+
+let currentBtn = '';
+
 // localStorage.clear()
 
+const categoryRecipes = [];
+
 document.addEventListener('DOMContentLoaded', onFavoritesRealod);
-refs.warning.classList.add('isHidden');
 
 function calcPages() {
   const screenWidth = window.innerWidth;
@@ -45,10 +51,7 @@ function groupObjects(array, groupSize) {
 }
 
 function onFavoritesRealod() {
-  // const markup = generateStorageList();
   const categoryMarkup = generateCategoryList();
-  // if (!markup) throw new Error('No result');
-  // refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
   refs.favoriteCategoriesList.insertAdjacentHTML('beforeend', categoryMarkup);
   generateStorageList();
 }
@@ -75,15 +78,19 @@ function generateStorageList(pageSet = 1) {
     );
 
     refs.favoriteRecipesList.innerHTML = listMarkup;
+  } else {
+    refs.warning.classList.remove('is-hidden');
+    refs.allBtn.classList.add('is-hidden');
 
-    refs.warning.classList.remove('isHidden');
+    if (window.innerWidth < 768) {
+      refs.hiroImg.classList.add('is-hidden');
+    }
   }
 }
 
 function generateCategoryList() {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
-  console.log(data);
   if (storage) {
     return data
       .flatMap(recipe => recipe.category)
@@ -97,28 +104,65 @@ function generateCategoryList() {
 }
 
 function renderCategory(category) {
-  return `<li><button class="button-fav">${category}</button></li>`;
+  return `<li class="list"><button class="button-fav">${category}</button></li>`;
 }
 
 refs.categoryBtn.addEventListener('click', filterByCategory);
 
 function filterByCategory(evt) {
+  let data = [];
+  let categoryRecipes;
   refs.favoriteRecipesList.innerHTML = '';
-  const currentBtn = evt.target.textContent;
-  const storage = localStorage.getItem('favorites');
-  const data = JSON.parse(storage);
-  const categoryRecipes = data.filter(recipe => recipe.category === currentBtn);
-  console.log(categoryRecipes);
-  const markup = generateCategoryMarkup(categoryRecipes);
-  console.log(markup);
-  if (!markup) throw new Error('No result');
-  refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
-}
 
-function generateCategoryMarkup(categoryRecipes) {
-  return categoryRecipes.reduce(
+  if (evt !== Number(evt) && evt.target.nodeName === 'BUTTON') {
+    setActiveClass(evt);
+    if (evt.target.name === 'all') return generateStorageList();
+    else currentBtn = evt.target.textContent;
+  }
+
+  const storage = localStorage.getItem('favorites');
+  data = JSON.parse(storage);
+
+  categoryRecipes = [...data.filter(recipe => recipe.category === currentBtn)];
+
+  let pageSet = 1;
+
+  if (Number(evt) === evt) pageSet = evt;
+
+  const perPage = calcPages();
+  const objData = groupObjects(categoryRecipes, perPage);
+  const totalPages = Object.keys(objData).length;
+
+  if (totalPages > 1) {
+    refs.paginationBox.style.display = 'block';
+    startPagination(pageSet, perPage, totalPages, filterByCategory);
+  } else {
+    refs.paginationBox.style.display = 'none';
+  }
+
+  const listMarkup = objData[pageSet].reduce(
     (markup, { title, description, preview, rating, id }) =>
       markup + renderItem(title, description, preview, rating, id),
     ''
   );
+
+  refs.favoriteRecipesList.innerHTML = listMarkup;
+
+  // const markup = generateCategoryMarkup(categoryRecipes);
+  // if (!markup) throw new Error('No result');
+  // refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
+}
+
+// function generateCategoryMarkup(categoryRecipes) {
+//   return categoryRecipes.reduce(
+//     (markup, { title, description, preview, rating, id }) =>
+//       markup + renderItem(title, description, preview, rating, id),
+//     ''
+//   );
+// }
+
+function setActiveClass({ target }) {
+  const btn = document.querySelector('.onActive');
+  btn.classList.remove('onActive');
+  target.classList.add('onActive');
 }

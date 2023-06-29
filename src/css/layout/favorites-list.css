@@ -48,7 +48,7 @@
 .empty-storage {
   display: block;
   text-align: center;
-  margin-top: 365px;
+  margin-top: 164px;
   font-size: 14px;
 }
 
@@ -56,7 +56,7 @@
   .empty-storage {
     display: block;
     text-align: center;
-    margin-top: 280px;
+    margin-top: 0px;
     font-size: 14px;
   }
 }
@@ -85,21 +85,21 @@
   }
 }
 
-.f-hero-img {
+/* .fav-hero {
   display: block;
   width: 100%;
   height: auto;
 }
 
 @media screen and (min-width: 768px) {
-  .f-hero-img {
+  .fav-hero {
     display: block;
     width: 100%;
     height: auto;
   }
-}
+} */
 
-.isHidden {
+.is-hidden {
   display: none;
 }
 
@@ -113,7 +113,6 @@
 
 .rendered-buttons {
   display: flex;
-  gap: 12px;
 }
 
 .button-fav {
@@ -129,14 +128,22 @@
   cursor: pointer;
 }
 
+.dark .button-fav {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: inherit;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
 @media screen and (min-width: 768px) {
   .button-fav {
     font-size: 16px;
   }
 }
 
-.button-fav.active {
+.button-fav.onActive,
+.all-btn.onActive {
   color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .button-fav:hover {
