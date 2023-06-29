@@ -30,6 +30,7 @@ body.dark {
   background-color: var(--primary-dark-color);
   color: #f4f4f4;
 }
+
 .dark .menu {
   color: white;
 }
