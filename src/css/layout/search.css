@@ -103,6 +103,8 @@
 
 @media screen and (min-width: 1280px) {
   .image-container {
+    min-height: 908px;
+
     row-gap: 32px;
   }
 }
@@ -173,7 +175,7 @@
   width: 40px;
   height: 40px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border-top: 4px solid var(--accent-color);
   border-radius: 50%;
   animation: spin 3s linear infinite;
   align-self: flex-end;
@@ -207,9 +209,26 @@
   margin-bottom: 32px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .input-section {
     gap: 14px;
     margin-bottom: 24px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .search-res-container {
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #spinner {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-25%, -50%);
+
+    z-index: 1;
   }
 }

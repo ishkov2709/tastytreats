@@ -18,7 +18,7 @@ const refs = {
   hiroImg: document.querySelector('.fav-hero'),
 };
 
-localStorage.clear()
+// localStorage.clear()
 
 document.addEventListener('DOMContentLoaded', onFavoritesRealod);
 
@@ -53,7 +53,6 @@ function generateStorageList(pageSet = 1) {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
   if (storage) {
-
     const perPage = calcPages();
     const objData = groupObjects(data, perPage);
     const totalPages = Object.keys(objData).length;
@@ -72,25 +71,19 @@ function generateStorageList(pageSet = 1) {
     );
 
     refs.favoriteRecipesList.innerHTML = listMarkup;
-
-  }  else {
+  } else {
     refs.warning.classList.remove('is-hidden');
     refs.allBtn.classList.add('is-hidden');
 
-    if(window.innerWidth < 768) {
-        refs.hiroImg.classList.add('is-hidden');
+    if (window.innerWidth < 768) {
+      refs.hiroImg.classList.add('is-hidden');
     }
   }
-
-        
 }
-  
-
 
 function generateCategoryList() {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
-  console.log(data);
   if (storage) {
     return data
       .flatMap(recipe => recipe.category)
@@ -110,15 +103,40 @@ function renderCategory(category) {
 refs.categoryBtn.addEventListener('click', filterByCategory);
 
 function filterByCategory(evt) {
-  
   refs.favoriteRecipesList.innerHTML = '';
   const currentBtn = evt.target;
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
-  const categoryRecipes = data.filter(recipe => recipe.category === currentBtn.textContent);
-  const markup = generateCategoryMarkup(categoryRecipes);
-  if (!markup) throw new Error('No result');
-  refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
+  const categoryRecipes = data.filter(
+    recipe => recipe.category === currentBtn.textContent
+  );
+
+  let pageSet = 1;
+
+  if (Number(evt) === evt) return (pageSet = evt);
+
+  const perPage = calcPages();
+  const objData = groupObjects(categoryRecipes, perPage);
+  const totalPages = Object.keys(objData).length;
+
+  if (totalPages > 1) {
+    refs.paginationBox.style.display = 'block';
+    startPagination(pageSet, perPage, totalPages, filterByCategory);
+  } else {
+    refs.paginationBox.style.display = 'none';
+  }
+
+  const listMarkup = objData[pageSet].reduce(
+    (markup, { title, description, preview, rating, id }) =>
+      markup + renderItem(title, description, preview, rating, id),
+    ''
+  );
+
+  refs.favoriteRecipesList.innerHTML = listMarkup;
+
+  // const markup = generateCategoryMarkup(categoryRecipes);
+  // if (!markup) throw new Error('No result');
+  // refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
 }
 
 function generateCategoryMarkup(categoryRecipes) {
@@ -128,4 +146,3 @@ function generateCategoryMarkup(categoryRecipes) {
     ''
   );
 }
-

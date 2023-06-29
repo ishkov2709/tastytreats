@@ -14,6 +14,7 @@ function resizeVisPage() {
 }
 
 function startPagination(page, perPage, totalPages, callback) {
+  console.log([page, perPage, totalPages, callback]);
   const options = {
     totalItems: Number(perPage) * Number(totalPages),
     itemsPerPage: Number(perPage),
