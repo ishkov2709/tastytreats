@@ -61,9 +61,11 @@ function generateStorageList(pageSet = 1) {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
 
-  if (!storage || !data) refs.allBtn.style.display = 'none';
+  refs.allBtn.style.display = 'none';
 
   if (storage) {
+    refs.allBtn.style.display = 'block';
+
     const perPage = calcPages();
     const objData = groupObjects(data, perPage);
     const totalPages = Object.keys(objData).length;
