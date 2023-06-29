@@ -4,7 +4,7 @@ import Notiflix, { Loading } from 'notiflix';
 
 import renderItem from './renders';
 import startPagination from '../utils/pagination';
-import changeThemePagination from '../utils/switchTheme';
+import { changeThemePagination } from '../utils/switchTheme';
 import { OpenModal } from '../utils/modal-recipes';
 import { setActiveClass } from '../utils/scrollbar';
 

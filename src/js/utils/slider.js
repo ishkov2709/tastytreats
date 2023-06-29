@@ -1,62 +1,54 @@
-import Swiper, { Pagination, Autoplay} from 'swiper';
+import Swiper, { Pagination, Autoplay } from 'swiper';
 import '../../../node_modules/swiper/swiper.css';
-import '../../../node_modules/swiper/modules/pagination/pagination-element.min.css'
-import changeSwiperPagTheme from './switchTheme'
+import '../../../node_modules/swiper/modules/pagination/pagination-element.min.css';
+import { changeSwiperPagTheme } from './switchTheme';
 
-import { findMasterClasses } from "../service/API"
+import { findMasterClasses } from '../service/API';
 
 const refs = {
   swiper: document.querySelector('.swiper-wrapper'),
   loader: document.querySelector('.loader'),
-  body: document.querySelector('body')
-}
+  body: document.querySelector('body'),
+};
 
-createSlider()
+createSlider();
 
+async function createSlider() {
+  try {
+    const markup = await generateIventsMarkup();
+    await addIventsInSlick(markup);
 
- async function createSlider() {
-    try {
-        const markup = await generateIventsMarkup()
-      await addIventsInSlick(markup);
-    
-      const swiper = await new Swiper(".swiper", {
-       modules: [Pagination, Autoplay],
+    const swiper = await new Swiper('.swiper', {
+      modules: [Pagination, Autoplay],
       pagination: {
-        el: ".swiper-pagination",
+        el: '.swiper-pagination',
         clickable: true,
-        },
-       autoplay: {
-         delay: 6000,
-        },
-      });
+      },
+      autoplay: {
+        delay: 6000,
+      },
+    });
 
-      // const bullets = swiper.pagination.bullets;
-      // const bullets2 = document.querySelectorAll('.swiper-pagination-bullet')
-      // console.log(bullets2);
-      // changeSwiperPagTheme(bullets)
-     
-
-    } catch {
-    } 
+    const bullets = swiper.pagination.bullets;
+    changeSwiperPagTheme(bullets);
+  } catch {}
 }
 
 async function generateIventsMarkup() {
-   refs.loader.classList.remove('visible')
-  
-    try {
-      const ivents = await findMasterClasses()
-      refs.loader.classList.add('visible')
-      
-    return ivents.reduce((markup, ivent) => markup + createMarkup(ivent), "")
-    } catch {
+  refs.loader.classList.remove('visible');
 
-    }
+  try {
+    const ivents = await findMasterClasses();
+    refs.loader.classList.add('visible');
+
+    return ivents.reduce((markup, ivent) => markup + createMarkup(ivent), '');
+  } catch {}
 }
 
 function createMarkup(ivent) {
-    const { name, previewUrl, area } = ivent.topic;
-    const cookName = ivent.cook.name;
-    const cookImgUrl = ivent.cook.imgUrl;
+  const { name, previewUrl, area } = ivent.topic;
+  const cookName = ivent.cook.name;
+  const cookImgUrl = ivent.cook.imgUrl;
   return `<div class="swiper-slide">
     <div class="slide-item">
       <img
@@ -83,12 +75,9 @@ function createMarkup(ivent) {
         </div>
     </div>
 </div>
-    `
+    `;
 }
 
 function addIventsInSlick(markup) {
-  refs.swiper.insertAdjacentHTML("beforeend", markup)
-  
+  refs.swiper.insertAdjacentHTML('beforeend', markup);
 }
-
-
