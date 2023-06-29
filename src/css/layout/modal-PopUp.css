@@ -1,7 +1,7 @@
 .modal {
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   position: fixed;
   z-index: 1;
   left: 0;
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  
 }
 
 @media (max-width: 480px) {
@@ -71,11 +71,15 @@
 
 .modal-btn {
   margin-top: 94px;
+  width: 329px;
 }
 
+
+
+
 .modal-btn button {
-  display: flex;
-  width: 295px;
+  
+  width: 329px;
   padding: 15px 162px;
   border-radius: 15px;
   background: #9bb537;
@@ -83,6 +87,13 @@
   color: #fff;
   cursor: pointer;
   bottom: 20px;
+}
+@media (min-width: 1440px) {
+  .modal-btn button {
+    width: 390px;
+    margin-top: 40 px;
+    
+  }
 }
 
 .close-btn {
