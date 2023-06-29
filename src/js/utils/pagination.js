@@ -24,19 +24,19 @@ function startPagination(page, perPage, totalPages, callback) {
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
     template: {
-      page: '<a href="#" class="tui-page-btn pag-page pag-page-next-light">{{page}}</a>',
+      page: '<a href="#" class="tui-page-btn pag-page">{{page}}</a>',
       currentPage:
-        '<strong class="tui-page-btn tui-is-selected pag-active-light">{{page}}</strong>',
+        '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
-        '<a href="#" class="tui-page-btn tui-{{type}} move-button pag-page-move-light">' +
+        '<a href="#" class="tui-page-btn tui-{{type}} move-button">' +
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
         '</a>',
       disabledMoveButton:
-        '<span class="tui-page-btn tui-is-disabled tui-{{type}} prev-button pag-page-prev-light">' +
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}} prev-button">' +
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
         '</span>',
       moreButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip more-button pag-page-next-light">' +
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip more-button">' +
         '<span class="tui-ico-ellip">...</span>' +
         '</a>',
     },
