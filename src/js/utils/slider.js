@@ -5,16 +5,18 @@ import '../../../node_modules/swiper/modules/pagination/pagination-element.min.c
 import { findMasterClasses } from "../service/API"
 
 const refs = {
-  swiper: document.querySelector('.swiper-wrapper')
+  swiper: document.querySelector('.swiper-wrapper'),
+  loader: document.querySelector('.loader'),
 }
 
 createSlider()
 
 async function createSlider() {
+   
     try {
         const markup = await generateIventsMarkup()
       await addIventsInSlick(markup);
-    
+     
       new Swiper(".swiper", {
        modules: [Pagination, Autoplay],
       pagination: {
@@ -26,15 +28,16 @@ async function createSlider() {
         },
         
       });
-      // const pagBullet = document.querySelectorAll('.swiper-pagination-bullet')
-      //  console.log(pagBullet)
     } catch {
     }
 }
 
 async function generateIventsMarkup() {
+   // refs.loader.classList.remove('visible')
+  
     try {
-        const ivents = await findMasterClasses()
+      const ivents = await findMasterClasses()
+     refs.loader.classList.add('visible')
     return ivents.reduce((markup, ivent) => markup + createMarkup(ivent), "")
     } catch {
 
