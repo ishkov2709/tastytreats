@@ -11,16 +11,16 @@ import startPagination from './js/utils/pagination';
 const refs = {
   favoriteCategoriesList: document.querySelector('.favorite-categories'),
   favoriteRecipesList: document.querySelector('.favorite-list'),
-  warning: document.querySelector('p'),
+  warning: document.querySelector('.empty-storage'),
   paginationBox: document.getElementById('pagination'),
   categoryBtn: document.querySelector('.favorite-categories'),
+  allBtn: document.querySelector('.all-btn'),
+  hiroImg: document.querySelector('.fav-hero'),
 };
 
-console.log(refs.warning);
-// localStorage.clear()
+localStorage.clear()
 
 document.addEventListener('DOMContentLoaded', onFavoritesRealod);
-refs.warning.classList.add('isHidden');
 
 function calcPages() {
   const screenWidth = window.innerWidth;
@@ -44,10 +44,7 @@ function groupObjects(array, groupSize) {
 }
 
 function onFavoritesRealod() {
-  // const markup = generateStorageList();
   const categoryMarkup = generateCategoryList();
-  // if (!markup) throw new Error('No result');
-  // refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
   refs.favoriteCategoriesList.insertAdjacentHTML('beforeend', categoryMarkup);
   generateStorageList();
 }
@@ -56,6 +53,7 @@ function generateStorageList(pageSet = 1) {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
   if (storage) {
+
     const perPage = calcPages();
     const objData = groupObjects(data, perPage);
     const totalPages = Object.keys(objData).length;
@@ -75,9 +73,19 @@ function generateStorageList(pageSet = 1) {
 
     refs.favoriteRecipesList.innerHTML = listMarkup;
 
-    refs.warning.classList.remove('isHidden');
+  }  else {
+    refs.warning.classList.remove('is-hidden');
+    refs.allBtn.classList.add('is-hidden');
+
+    if(window.innerWidth < 768) {
+        refs.hiroImg.classList.add('is-hidden');
+    }
   }
+
+        
 }
+  
+
 
 function generateCategoryList() {
   const storage = localStorage.getItem('favorites');
@@ -96,20 +104,19 @@ function generateCategoryList() {
 }
 
 function renderCategory(category) {
-  return `<li><button class="button-fav">${category}</button></li>`;
+  return `<li class="list"><button class="button-fav">${category}</button></li>`;
 }
 
 refs.categoryBtn.addEventListener('click', filterByCategory);
 
 function filterByCategory(evt) {
+  
   refs.favoriteRecipesList.innerHTML = '';
-  const currentBtn = evt.target.textContent;
+  const currentBtn = evt.target;
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
-  const categoryRecipes = data.filter(recipe => recipe.category === currentBtn);
-  console.log(categoryRecipes);
+  const categoryRecipes = data.filter(recipe => recipe.category === currentBtn.textContent);
   const markup = generateCategoryMarkup(categoryRecipes);
-  console.log(markup);
   if (!markup) throw new Error('No result');
   refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
 }
@@ -121,3 +128,4 @@ function generateCategoryMarkup(categoryRecipes) {
     ''
   );
 }
+
