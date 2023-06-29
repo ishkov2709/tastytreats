@@ -11,10 +11,6 @@
   stroke: var(--primary-white-color);
 }
 
-.dark .burger {
-  stroke: var(--primary-white-color);
-}
-
 .mobile-menu_close-btn {
   background: transparent;
 }
@@ -102,6 +98,7 @@ body.favorite.dark #homeLink:hover,
 body.home.dark #homeLink:hover {
   color: var(--primary-white-color);
 }
+
 .bounce {
   text-decoration: none;
   box-shadow: inset 0 0 0 0 black;
