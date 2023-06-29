@@ -11,6 +11,10 @@
   stroke: var(--primary-white-color);
 }
 
+.dark .burger {
+  stroke: var(--primary-white-color);
+}
+
 .mobile-menu_close-btn {
   background: transparent;
 }
