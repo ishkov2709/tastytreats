@@ -45,7 +45,7 @@
   }
 }
 
-.empty-storage{
+.empty-storage {
   display: block;
   text-align: center;
   margin-top: 164px;
@@ -128,14 +128,22 @@
   cursor: pointer;
 }
 
+.dark .button-fav {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: inherit;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
 @media screen and (min-width: 768px) {
   .button-fav {
     font-size: 16px;
   }
 }
 
-.button-fav.active {
+.button-fav.onActive,
+.all-btn.onActive {
   color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .button-fav:hover {

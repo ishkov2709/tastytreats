@@ -18,7 +18,13 @@ const refs = {
   hiroImg: document.querySelector('.fav-hero'),
 };
 
+// Variables
+
+let currentBtn = '';
+
 // localStorage.clear()
+
+const categoryRecipes = [];
 
 document.addEventListener('DOMContentLoaded', onFavoritesRealod);
 
@@ -103,17 +109,24 @@ function renderCategory(category) {
 refs.categoryBtn.addEventListener('click', filterByCategory);
 
 function filterByCategory(evt) {
+  let data = [];
+  let categoryRecipes;
   refs.favoriteRecipesList.innerHTML = '';
-  const currentBtn = evt.target;
+
+  if (evt !== Number(evt) && evt.target.nodeName === 'BUTTON') {
+    setActiveClass(evt);
+    if (evt.target.name === 'all') return generateStorageList();
+    else currentBtn = evt.target.textContent;
+  }
+
   const storage = localStorage.getItem('favorites');
-  const data = JSON.parse(storage);
-  const categoryRecipes = data.filter(
-    recipe => recipe.category === currentBtn.textContent
-  );
+  data = JSON.parse(storage);
+
+  categoryRecipes = [...data.filter(recipe => recipe.category === currentBtn)];
 
   let pageSet = 1;
 
-  if (Number(evt) === evt) return (pageSet = evt);
+  if (Number(evt) === evt) pageSet = evt;
 
   const perPage = calcPages();
   const objData = groupObjects(categoryRecipes, perPage);
@@ -139,10 +152,16 @@ function filterByCategory(evt) {
   // refs.favoriteRecipesList.insertAdjacentHTML('beforeend', markup);
 }
 
-function generateCategoryMarkup(categoryRecipes) {
-  return categoryRecipes.reduce(
-    (markup, { title, description, preview, rating, id }) =>
-      markup + renderItem(title, description, preview, rating, id),
-    ''
-  );
+// function generateCategoryMarkup(categoryRecipes) {
+//   return categoryRecipes.reduce(
+//     (markup, { title, description, preview, rating, id }) =>
+//       markup + renderItem(title, description, preview, rating, id),
+//     ''
+//   );
+// }
+
+function setActiveClass({ target }) {
+  const btn = document.querySelector('.onActive');
+  btn.classList.remove('onActive');
+  target.classList.add('onActive');
 }
