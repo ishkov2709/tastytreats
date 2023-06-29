@@ -65,9 +65,11 @@ body.home #favoriteLink {
 body.home #favoriteLink:hover {
   color: var(--primary-white-color);
 }
+
 body.favorite #homeLink {
   color: var(--primaty-black-color);
 }
+
 body.favorite #homeLink:hover {
   color: var(--primary-white-color);
 }
