@@ -42,60 +42,21 @@ body.dark {
 }
 /* ----------------------- */
 
-body #favoriteLink,
-body #homeLink {
+.menu.link.active {
   color: var(--primaty-black-color);
 }
 
-body.dark #favoriteLink,
-body.dark #homeLink {
-  color: var(--primary-white-color);
-}
-body.home #homeLink:hover {
+.dark .menu.link.active {
   color: var(--primary-white-color);
 }
 
-body.home #favoriteLink {
-  color: var(--primaty-black-color);
-}
-
-body.home.dark #favoriteLink {
-  color: var(--primary-white-color);
-}
-
-body.home #favoriteLink:hover {
-  color: var(--primary-white-color);
-}
-
-body.favorite #homeLink {
-  color: var(--primaty-black-color);
-}
-
-body.favorite.dark #homeLink {
-  color: var(--primary-white-color);
-}
-
-body.favorite #homeLink:hover {
-  color: var(--primary-white-color);
-}
-
-body.favorite #favoriteLink:hover {
-  color: var(--primary-white-color);
-}
-
-body.favorite #favoriteLink,
-body.favorite.dark #favoriteLink {
+#favoriteLink.currentNow,
+#homeLink.currentNow {
   color: var(--accent-color);
 }
 
-body #homeLink,
-body.home #homeLink,
-body.home.dark #homeLink {
-  color: var(--accent-color);
-}
-
-body.favorite.dark #homeLink:hover,
-body.home.dark #homeLink:hover {
+#favoriteLink:hover,
+#homeLink:hover {
   color: var(--primary-white-color);
 }
 

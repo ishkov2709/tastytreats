@@ -2,10 +2,10 @@
 function setPageClass() {
   const currentPage = location.pathname.split('/').pop();
 
-  if (currentPage === 'index.html') {
-    document.body.classList.add('home');
+  if (currentPage === 'index.html' || !currentPage) {
+    document.getElementById('homeLink').classList.add('currentNow');
   } else if (currentPage === 'favorites.html') {
-    document.body.classList.add('favorite');
+    document.getElementById('favoriteLink').classList.add('currentNow');
   }
 }
 
