@@ -74,11 +74,7 @@
   width: 329px;
 }
 
-
-
-
 .modal-btn button {
-  
   width: 329px;
   padding: 15px 162px;
   border-radius: 15px;
@@ -126,5 +122,17 @@
 
   .modal-btn button {
     font-size: 14px;
+  }
+}
+
+.modal-header {
+  margin-top: 27px;
+}
+
+@media (max-width: 1024px) {
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
   }
 }
