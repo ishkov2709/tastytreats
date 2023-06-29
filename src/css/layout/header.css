@@ -42,24 +42,25 @@ body.dark {
 }
 /* ----------------------- */
 
-body.home #favoriteLink,
-body.favorite #homeLink {
+body #favoriteLink,
+body #homeLink {
   color: var(--primaty-black-color);
 }
 
-body.home.dark #favoriteLink,
-body.favorite.dark #homeLink {
+body.dark #favoriteLink,
+body.dark #homeLink {
   color: var(--primary-white-color);
-}
-
-body.home #homeLink {
-  color: var(--accent-color);
 }
 body.home #homeLink:hover {
   color: var(--primary-white-color);
 }
+
 body.home #favoriteLink {
   color: var(--primaty-black-color);
+}
+
+body.home.dark #favoriteLink {
+  color: var(--primary-white-color);
 }
 
 body.home #favoriteLink:hover {
@@ -70,14 +71,31 @@ body.favorite #homeLink {
   color: var(--primaty-black-color);
 }
 
+body.favorite.dark #homeLink {
+  color: var(--primary-white-color);
+}
+
 body.favorite #homeLink:hover {
   color: var(--primary-white-color);
 }
 
-body.favorite #favoriteLink {
+body.favorite #favoriteLink:hover {
+  color: var(--primary-white-color);
+}
+
+body.favorite #favoriteLink,
+body.favorite.dark #favoriteLink {
   color: var(--accent-color);
 }
-body.favorite #favoriteLink:hover {
+
+body #homeLink,
+body.home #homeLink,
+body.home.dark #homeLink {
+  color: var(--accent-color);
+}
+
+body.favorite.dark #homeLink:hover,
+body.home.dark #homeLink:hover {
   color: var(--primary-white-color);
 }
 
