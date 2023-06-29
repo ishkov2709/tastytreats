@@ -8,6 +8,7 @@ import './js/utils/modal-recipes';
 import renderItem from './js/renders/renders.js';
 import startPagination from './js/utils/pagination';
 import { OpenModal } from './js/utils/modal-recipes';
+import Notiflix from 'notiflix';
 
 const refs = {
   favoriteCategoriesList: document.querySelector('.favorite-categories'),
@@ -180,6 +181,9 @@ function toggleFavriteRecipe(currentBtn) {
   currentBtn.classList.toggle('active');
   const storage = JSON.parse(localStorage.getItem('favorites')) ?? [];
   if (currentBtn.classList.contains('active')) {
+    if (storage.find(el => el.id === recipeInfo.id)) {
+      return Notiflix.Notify.info('Recipe was added earlier');
+    }
     localStorage.setItem('favorites', JSON.stringify([...storage, recipeInfo]));
   } else {
     localStorage.setItem(

@@ -2,6 +2,7 @@ import { findRecipes } from '../service/API';
 import { measureRating } from '../renders/renders';
 import { ratingScale } from '../renders/renders';
 import SmoothScrollbar from 'smooth-scrollbar';
+import Notiflix from 'notiflix';
 const refs = {
   closeModalBtn: document.querySelector('.close-modal'),
   backdropModal: document.querySelector('.backdrop-recipes'),
@@ -18,7 +19,7 @@ export function OpenModal(currentBtn) {
   refs.backdropModal.classList.remove('is-hidden');
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
-  refs.saveRecipeBtn.addEventListener('click', AddToFav)
+  refs.saveRecipeBtn.addEventListener('click', AddToFav);
 }
 function CloseModal() {
   refs.backdropModal.classList.add('is-hidden');
@@ -36,6 +37,19 @@ function CloseOnBtnClick(e) {
 async function genereteRecipe(id) {
   try {
     const recipe = await findRecipes(id);
+
+    const { title, description, preview, rating, _id, category } = recipe;
+
+    const recipeObj = {
+      title,
+      description,
+      preview,
+      rating,
+      id: _id,
+      category,
+    };
+
+    refs.modalRecipes.dataset.info = `${JSON.stringify(recipeObj)}`;
 
     addData(CreateMarkup(recipe));
     addScrollbarText();
@@ -62,7 +76,8 @@ function CreateMarkup(data) {
   for (let i = 0; i < ingr.length; i++) {
     ingrList += `<li class="recipe-ingridient">${ingr[i].name} <span class="recipe-ps">${ingr[i].measure}</span></li>`;
   }
-  const fixRating = data.rating.toFixed(1);
+  const fixRating =
+    data.rating > 5 ? Number(5).toFixed(1) : data.rating.toFixed(1);
   const markup = `<div class="recipe-parts">
     ${checkSrc(src, data.description)}
     <div class="recipe-title">
@@ -125,6 +140,15 @@ function checkSrc(url, description) {
   }
 }
 
-function AddToFav() { 
-  
+function AddToFav() {
+  const storage = localStorage.getItem('favorites');
+  const data = JSON.parse(storage);
+  const currentRec = JSON.parse(refs.modalRecipes.dataset.info);
+  if (data.find(el => el.id === currentRec.id)) {
+    return Notiflix.Notify.info('Recipe was added earlier');
+  }
+  return localStorage.setItem(
+    'favorites',
+    JSON.stringify([...data, currentRec])
+  );
 }
