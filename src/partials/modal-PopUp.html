@@ -5,11 +5,15 @@
             <h2>ORDER NOW</h2>
         </div>
         <div class="modal-input">
-            <label for="name">Name:</label>
+            <label for="name" required pattern="^[a-zA-Z]+\s[a-zA-Z]+$"
+                title="Username must be two words separated by space.">Name:</label>
             <input type="text" id="name" placeholder="">
         </div>
         <div class="modal-input">
-            <label for="phone">Phone number:</label>
+            <label for="phone" required minlength="6" maxlength="12"
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number.">Phone
+                number:</label>
             <input type="tel" id="phone" placeholder="">
         </div>
         <div class="modal-input">
@@ -18,9 +22,9 @@
         </div>
         <div class="modal-input">
             <label for="comment">Comment:</label>
-            <textarea id="comment" placeholder=""></textarea>
+            <textarea id="comment" rows="4" placeholder=""></textarea>
         </div>
-        <div class="modal-btn">
+        <div class=" modal-btn">
             <button id="send-btn">Send</button>
         </div>
     </div>
