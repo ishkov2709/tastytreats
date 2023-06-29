@@ -4,8 +4,10 @@ function setPageClass() {
 
   if (currentPage === 'index.html' || !currentPage) {
     document.getElementById('homeLink').classList.add('currentNow');
+    document.getElementById('mobHomeLink').classList.add('currentNow');
   } else if (currentPage === 'favorites.html') {
     document.getElementById('favoriteLink').classList.add('currentNow');
+    document.getElementById('mobFavLink').classList.add('currentNow');
   }
 }
 

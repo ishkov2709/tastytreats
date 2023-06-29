@@ -7,6 +7,7 @@ const refs = {
   backdropModal: document.querySelector('.backdrop-recipes'),
   modalRecipes: document.querySelector('.modal-recipes-js'),
   backdropModal: document.querySelector('.backdrop-recipes'),
+  saveRecipeBtn: document.querySelector('.save-recipes-btn'),
 };
 // open\close a modal window
 
@@ -17,6 +18,7 @@ export function OpenModal(currentBtn) {
   refs.backdropModal.classList.remove('is-hidden');
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
+  refs.saveRecipeBtn.addEventListener('click', AddToFav)
 }
 function CloseModal() {
   refs.backdropModal.classList.add('is-hidden');
@@ -121,4 +123,8 @@ function checkSrc(url, description) {
       alt="${description}"
     ></iframe>`;
   }
+}
+
+function AddToFav() { 
+  
 }

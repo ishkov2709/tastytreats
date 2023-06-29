@@ -55,7 +55,7 @@ function renderItem(title, description, preview, rating, id, category) {
     id,
     category,
   };
-  const fixRating = rating.toFixed(1);
+  const fixRating = rating > 5 ? Number(5).toFixed(1) : rating.toFixed(1);
   return `<div class='recipe-item' 
                 style='
                       background: linear-gradient(0deg, rgba(5, 5, 5, 0.6),

@@ -93,7 +93,7 @@ export async function searchImagesAndDisplay(
   }
 }
 
-function toggleFavriteRecipe(currentBtn) {
+export function toggleFavriteRecipe(currentBtn) {
   const recipeInfo = JSON.parse(currentBtn.dataset.info);
 
   currentBtn.classList.toggle('active');
