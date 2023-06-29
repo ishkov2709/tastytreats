@@ -1,23 +1,25 @@
 import Swiper, { Pagination, Autoplay} from 'swiper';
 import '../../../node_modules/swiper/swiper.css';
 import '../../../node_modules/swiper/modules/pagination/pagination-element.min.css'
+import changeSwiperPagTheme from './switchTheme'
 
 import { findMasterClasses } from "../service/API"
 
 const refs = {
   swiper: document.querySelector('.swiper-wrapper'),
   loader: document.querySelector('.loader'),
+  body: document.querySelector('body')
 }
 
 createSlider()
 
-async function createSlider() {
-   
+
+ async function createSlider() {
     try {
         const markup = await generateIventsMarkup()
       await addIventsInSlick(markup);
-     
-      new Swiper(".swiper", {
+    
+      const swiper = await new Swiper(".swiper", {
        modules: [Pagination, Autoplay],
       pagination: {
         el: ".swiper-pagination",
@@ -26,18 +28,25 @@ async function createSlider() {
        autoplay: {
          delay: 6000,
         },
-        
       });
+
+      // const bullets = swiper.pagination.bullets;
+      // const bullets2 = document.querySelectorAll('.swiper-pagination-bullet')
+      // console.log(bullets2);
+      // changeSwiperPagTheme(bullets)
+     
+
     } catch {
-    }
+    } 
 }
 
 async function generateIventsMarkup() {
-   // refs.loader.classList.remove('visible')
+   refs.loader.classList.remove('visible')
   
     try {
       const ivents = await findMasterClasses()
-     refs.loader.classList.add('visible')
+      refs.loader.classList.add('visible')
+      
     return ivents.reduce((markup, ivent) => markup + createMarkup(ivent), "")
     } catch {
 
@@ -78,7 +87,8 @@ function createMarkup(ivent) {
 }
 
 function addIventsInSlick(markup) {
-    refs.swiper.insertAdjacentHTML("beforeend", markup)
+  refs.swiper.insertAdjacentHTML("beforeend", markup)
+  
 }
 
 

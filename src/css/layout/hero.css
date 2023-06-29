@@ -273,10 +273,15 @@
 }
 
 .hero-slider .swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
+  background-color: var(--accent-color) !important;
+}
+
+.swiper-bullet-dark-theme {
+  background-color: var(--primary-white-color) !important;
 }
 
 .loader {
+  margin-top: 50px;
   width: 48px;
   height: 48px;
   display: inline-block;
