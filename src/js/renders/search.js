@@ -58,7 +58,6 @@ export async function searchImagesAndDisplay(
   currentPage = 1,
   callback = searchOnTitle
 ) {
-  console.log(currentPage);
   try {
     showSpinner();
 
@@ -83,8 +82,6 @@ export async function searchImagesAndDisplay(
     recipeContainer.innerHTML = recipes;
 
     prevSearch = searchQuery;
-    console.log(prevSearch);
-    console.log(searchQuery);
   } catch (error) {
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
@@ -98,7 +95,7 @@ export async function searchImagesAndDisplay(
   }
 }
 
-export function toggleFavriteRecipe(currentBtn) {
+function toggleFavriteRecipe(currentBtn) {
   const recipeInfo = JSON.parse(currentBtn.dataset.info);
 
   currentBtn.classList.toggle('active');
@@ -113,15 +110,12 @@ export function toggleFavriteRecipe(currentBtn) {
   }
 }
 
-export function hendleClickOnRecipes({ target }) {
+function hendleClickOnRecipes({ target }) {
   if (!target.closest('button')) return;
-
   const currentBtn = target.closest('button');
-
   if (currentBtn.name === 'favorite') {
     toggleFavriteRecipe(currentBtn);
   }
-
   if (currentBtn.name === 'details') {
     OpenModal(currentBtn);
   }
