@@ -7,18 +7,18 @@ const categories = document.querySelector('.container-allcategories');
 // Start
 
 const savedTheme = localStorage.getItem('theme');
-// if (savedTheme) {
-//   body.classList.add(savedTheme);
+if (savedTheme) {
+  body.classList.add(savedTheme);
 
-//   if (savedTheme === 'dark') {
-//     search.classList.remove('light-theme-add');
-//     search.classList.add('dark-theme-add');
-//     categories.classList.remove('light-theme-add');
-//     categories.classList.add('dark-theme-add');
+  if (savedTheme === 'dark') {
+    search.classList.remove('light-theme-add');
+    search.classList.add('dark-theme-add');
+    categories.classList.remove('light-theme-add');
+    categories.classList.add('dark-theme-add');
 
-//     checkBoxes.forEach(el => (el.checked = true));
-//   }
-// }
+    checkBoxes.forEach(el => (el.checked = true));
+  }
+}
 
 header.addEventListener('click', ({ target }) => {
   if (target.name === 'switch-theme') {
