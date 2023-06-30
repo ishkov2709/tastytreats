@@ -138,12 +138,18 @@ function filterByCategory(evt) {
 
   if (evt !== Number(evt) && evt.target.nodeName === 'BUTTON') {
     setActiveClass(evt);
-    if (evt.target.name === 'all') return generateStorageList();
+    if (evt.target.name === 'all') generateStorageList();
     else currentBtn = evt.target.textContent;
   }
 
   const storage = localStorage.getItem('favorites');
   data = JSON.parse(storage);
+
+  if (!data.length) {
+    refs.favoriteCategoriesList.style.display = 'none';
+
+    return;
+  }
 
   categoryRecipes = [...data.filter(recipe => recipe.category === currentBtn)];
 
