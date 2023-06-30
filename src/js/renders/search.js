@@ -300,7 +300,9 @@ export async function searchImagesAndDisplay(
     ].join('');
     if (totalPages > 1) {
       paginationBox.style.display = 'block';
-      await startPagination(page, perPage, totalPages, searchImagesAndDisplay);
+      startPagination(page, perPage, totalPages, page => {
+        searchImagesAndDisplay(page, callback);
+      });
     } else {
       paginationBox.style.display = 'none';
     }
@@ -332,7 +334,34 @@ export async function searchImagesAndDisplay(
     changeThemePagination();
   }
 }
-
 export function setSearchQueryName(name = '') {
   query = name;
 }
+
+function toggleFavriteRecipe(currentBtn) {
+  const recipeInfo = JSON.parse(currentBtn.dataset.info);
+
+  currentBtn.classList.toggle('active');
+  const storage = JSON.parse(localStorage.getItem('favorites')) ?? [];
+  if (currentBtn.classList.contains('active')) {
+    localStorage.setItem('favorites', JSON.stringify([...storage, recipeInfo]));
+  } else {
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify([...storage.filter(el => el.id !== recipeInfo.id)])
+    );
+  }
+}
+
+function hendleClickOnRecipes({ target }) {
+  if (!target.closest('button')) return;
+  const currentBtn = target.closest('button');
+  if (currentBtn.name === 'favorite') {
+    toggleFavriteRecipe(currentBtn);
+  }
+  if (currentBtn.name === 'details') {
+    OpenModal(currentBtn);
+  }
+}
+
+
