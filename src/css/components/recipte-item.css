@@ -180,6 +180,20 @@
   fill: currentColor;
 }
 
+@media screen and (min-width: 768px) {
+  .star-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .star-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .rate-item-active {
   color: #eea10c;
 }
@@ -195,6 +209,18 @@
   color: #f8f8f8;
   border: none;
   border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .button.item-rec {
+    padding: 8px 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .button.item-rec {
+    padding: 8px 16px;
+  }
 }
 
 .heart-icon {
