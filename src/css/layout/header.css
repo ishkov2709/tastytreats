@@ -30,40 +30,53 @@ body.dark {
   background-color: var(--primary-dark-color);
   color: #f4f4f4;
 }
+
 .dark .menu {
   color: white;
 }
 .menu {
   display: flex;
   text-decoration: none;
-  padding-left: 10px;
+  margin-left: 16px;
   font-size: 15px;
+}
+/* ----------------------- */
+
+.menu.link.active {
   color: var(--primaty-black-color);
 }
 
-.menu-home {
+.dark .menu.link.active {
+  color: var(--primary-white-color);
+}
+
+#favoriteLink.currentNow,
+#homeLink.currentNow {
   color: var(--accent-color);
+}
+
+#favoriteLink:hover,
+#homeLink:hover {
+  color: var(--primary-white-color);
+}
+
+#mobHomeLink.currentNow,
+#mobFavLink.currentNow {
+  color: var(--primary-white-color);
+}
+
+.dark #mobHomeLink.currentNow,
+.dark #mobFavLink.currentNow {
+  color: var(--accent-color);
+}
+
+.bounce {
   text-decoration: none;
+  box-shadow: inset 0 0 0 0 black;
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
-.menu-home:focus,
-.menu-home:hover {
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.menu:hover,
-.menu:focus {
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-.active::after {
-  background-color: var(--primaty-black-color);
-  display: block;
-  content: '';
-  position: absolute;
-  bottom: 0;
-}
-
-.menu-link.active {
-  color: var(--primaty-black-colo);
+.bounce:hover {
+  box-shadow: inset 200px 0 0 0 var(--accent-color);
 }
 .logo-tasty {
   color: var(--accent-color);
@@ -189,6 +202,7 @@ body.dark {
 
   .buttons {
     align-items: center;
+    gap: 14px;
   }
 
   .mobile-menu-new {
@@ -262,8 +276,24 @@ body.dark {
   .mobile-menu-nav-link {
     text-decoration: none;
     font-size: 12px;
-    color: #fff;
+    color: var(--text-white-color);
     margin: 0 auto;
+  }
+
+  .home .mobile-menu-nav-item:nth-child(1) .mobile-menu-nav-link {
+    color: var(--primary-white-color);
+  }
+
+  .favorite .mobile-menu-nav-item:nth-child(2) .mobile-menu-nav-link {
+    color: var(--primary-white-color);
+  }
+
+  .home.dark .mobile-menu-nav-item:nth-child(1) .mobile-menu-nav-link {
+    color: var(--accent-color);
+  }
+
+  .favorite.dark .mobile-menu-nav-item:nth-child(2) .mobile-menu-nav-link {
+    color: var(--accent-color);
   }
 
   .toggle-checkbox:checked + .toggle-switch {
@@ -340,6 +370,7 @@ body.dark {
   }
 }
 
-.mobile-menu-open_icon {
+.dark .mobile-menu-open_icon,
+.mobile-menu-open_icon.icon-close {
   stroke: var(--primary-white-color);
 }

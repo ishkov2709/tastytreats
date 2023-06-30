@@ -27,8 +27,15 @@ export async function fetchPopularRecipes() {
   const res = await axios.get(url);
   return res.data;
 }
- export async function getRating (){
-  const url =`https://tasty-treats-backend.p.goit.global/api/recipes/${recipeId}/rating`
-  const res = await axios.patch(url)
-  return res.data
- }
+
+export async function fetchAreaRecipes() {
+  const url = `https://tasty-treats-backend.p.goit.global/api/areas`
+  const res = await axios.get(url)
+  return res.data;
+}
+
+export async function fetchIngredientsRecipes() {
+  const url = `https://tasty-treats-backend.p.goit.global/api/ingredients`
+  const res = await axios.get(url)
+  return res.data;
+}

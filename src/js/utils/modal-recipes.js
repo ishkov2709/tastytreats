@@ -2,29 +2,48 @@ import { findRecipes } from '../service/API';
 import { measureRating } from '../renders/renders';
 import { ratingScale } from '../renders/renders';
 import SmoothScrollbar from 'smooth-scrollbar';
+import Notiflix from 'notiflix';
 const refs = {
   closeModalBtn: document.querySelector('.close-modal'),
   backdropModal: document.querySelector('.backdrop-recipes'),
   modalRecipes: document.querySelector('.modal-recipes-js'),
   backdropModal: document.querySelector('.backdrop-recipes'),
+  saveRecipeBtn: document.querySelector('.save-recipes-btn'),
 };
 // open\close a modal window
 
-refs.closeModalBtn.addEventListener('click', CloseModal);
-refs.backdropModal.addEventListener('click', CloseOnClick);
-document.addEventListener('keydown', CloseOnBtnClick);
 export function OpenModal(currentBtn) {
+  refs.closeModalBtn.addEventListener('click', CloseModal);
+  refs.backdropModal.addEventListener('click', CloseOnClick);
+  document.addEventListener('keydown', CloseOnBtnClick);
+
   refs.backdropModal.classList.remove('is-hidden');
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
+
+  const storage = localStorage.getItem('favorites');
+  const data = JSON.parse(storage);
+
+  if (storage) {
+    if (data.find(el => el.id === currentBtn.dataset.id)) {
+      refs.saveRecipeBtn.textContent = 'Is Added';
+    } else {
+      refs.saveRecipeBtn.textContent = 'Add to favorite';
+    }
+  }
+
+  refs.saveRecipeBtn.addEventListener('click', AddToFav);
 }
 function CloseModal() {
+  removeListeners();
   refs.backdropModal.classList.add('is-hidden');
   refs.modalRecipes.innerHTML = '';
   ToggleScroll();
 }
-function CloseOnClick(e) {
-  if (e.target.classList.contains('backdrop-recipes')) CloseModal();
+function CloseOnClick({ currentTarget, target }) {
+  // if (e.target.classList.contains('backdrop-recipes')) CloseModal();
+
+  if (currentTarget === target) CloseModal();
 }
 function CloseOnBtnClick(e) {
   if (e.key === 'Escape') CloseModal();
@@ -34,6 +53,19 @@ function CloseOnBtnClick(e) {
 async function genereteRecipe(id) {
   try {
     const recipe = await findRecipes(id);
+
+    const { title, description, preview, rating, _id, category } = recipe;
+
+    const recipeObj = {
+      title,
+      description,
+      preview,
+      rating,
+      id: _id,
+      category,
+    };
+
+    refs.modalRecipes.dataset.info = `${JSON.stringify(recipeObj)}`;
 
     addData(CreateMarkup(recipe));
     addScrollbarText();
@@ -60,7 +92,8 @@ function CreateMarkup(data) {
   for (let i = 0; i < ingr.length; i++) {
     ingrList += `<li class="recipe-ingridient">${ingr[i].name} <span class="recipe-ps">${ingr[i].measure}</span></li>`;
   }
-  const fixRating = data.rating.toFixed(1);
+  const fixRating =
+    data.rating > 5 ? Number(5).toFixed(1) : data.rating.toFixed(1);
   const markup = `<div class="recipe-parts">
     ${checkSrc(src, data.description)}
     <div class="recipe-title">
@@ -121,4 +154,31 @@ function checkSrc(url, description) {
       alt="${description}"
     ></iframe>`;
   }
+}
+
+function AddToFav({ target }) {
+  const storage = localStorage.getItem('favorites');
+  const data = JSON.parse(storage);
+  const currentRec = JSON.parse(refs.modalRecipes.dataset.info);
+  if (storage) {
+    if (data.find(el => el.id === currentRec.id)) {
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify([...data.filter(el => el.id !== currentRec.id)])
+      );
+      target.textContent = 'Add to favorite';
+    } else {
+      localStorage.setItem('favorites', JSON.stringify([...data, currentRec]));
+      target.textContent = 'Is Added';
+    }
+  } else {
+    localStorage.setItem('favorites', JSON.stringify([currentRec]));
+    target.textContent = 'Is Added';
+  }
+}
+
+function removeListeners() {
+  refs.closeModalBtn.removeEventListener('click', CloseModal);
+  refs.backdropModal.removeEventListener('click', CloseOnClick);
+  document.removeEventListener('keydown', CloseOnBtnClick);
 }

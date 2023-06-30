@@ -209,3 +209,12 @@
 .favorite-btn.active .heart-icon {
   fill: #f8f8f8;
 }
+
+.favorite-list .recipe-item {
+  width: 258px;
+  margin: 0;
+}
+
+.favorite-list .inter-box {
+  width: inherit;
+}
