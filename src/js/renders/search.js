@@ -198,7 +198,7 @@ function addAreaFilters(markup) {
 }
 
 function addIngridientsFilters(markup) {
-  ingredSelect.innerHTML = `<option value=""></option>` + markup;
+  ingredSelect.innerHTML = `<option value="">&nbsp;</option>` + markup;
   // ingredSelect.insertAdjacentHTML('beforeend', markup);
 }
 
