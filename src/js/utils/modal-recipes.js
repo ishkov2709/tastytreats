@@ -12,10 +12,11 @@ const refs = {
 };
 // open\close a modal window
 
-refs.closeModalBtn.addEventListener('click', CloseModal);
-refs.backdropModal.addEventListener('click', CloseOnClick);
-document.addEventListener('keydown', CloseOnBtnClick);
 export function OpenModal(currentBtn) {
+  refs.closeModalBtn.addEventListener('click', CloseModal);
+  refs.backdropModal.addEventListener('click', CloseOnClick);
+  document.addEventListener('keydown', CloseOnBtnClick);
+
   refs.backdropModal.classList.remove('is-hidden');
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
@@ -32,12 +33,15 @@ export function OpenModal(currentBtn) {
   refs.saveRecipeBtn.addEventListener('click', AddToFav);
 }
 function CloseModal() {
+  removeListeners();
   refs.backdropModal.classList.add('is-hidden');
   refs.modalRecipes.innerHTML = '';
   ToggleScroll();
 }
-function CloseOnClick(e) {
-  if (e.target.classList.contains('backdrop-recipes')) CloseModal();
+function CloseOnClick({ currentTarget, target }) {
+  // if (e.target.classList.contains('backdrop-recipes')) CloseModal();
+
+  if (currentTarget === target) CloseModal();
 }
 function CloseOnBtnClick(e) {
   if (e.key === 'Escape') CloseModal();
@@ -164,4 +168,10 @@ function AddToFav({ target }) {
     localStorage.setItem('favorites', JSON.stringify([...data, currentRec]));
     target.textContent = 'Is Added';
   }
+}
+
+function removeListeners() {
+  refs.closeModalBtn.removeEventListener('click', CloseModal);
+  refs.backdropModal.removeEventListener('click', CloseOnClick);
+  document.removeEventListener('keydown', CloseOnBtnClick);
 }
