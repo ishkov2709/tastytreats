@@ -9,7 +9,7 @@ import renderItem from './js/renders/renders.js';
 import startPagination from './js/utils/pagination';
 import { OpenModal } from './js/utils/modal-recipes';
 import Notiflix from 'notiflix';
-import { changeThemePagination } from './js/utils/switchTheme.js'
+import { changeThemePagination } from './js/utils/switchTheme.js';
 
 const refs = {
   favoriteCategoriesList: document.querySelector('.favorite-categories'),
@@ -64,6 +64,8 @@ export function onFavoritesRealod() {
 
   if (data.length) {
     refs.favoriteCategoriesList.innerHTML = `${allCatBtn}${categoryMarkup}`;
+  } else {
+    refs.allBtn.style.display = 'none';
   }
 
   generateStorageList();
@@ -86,7 +88,7 @@ function generateStorageList(pageSet = 1) {
       refs.paginationBox.style.display = 'block';
       startPagination(pageSet, perPage, totalPages, generateStorageList);
 
-      changeThemePagination()
+      changeThemePagination();
     } else {
       refs.paginationBox.style.display = 'none';
     }
