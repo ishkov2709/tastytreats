@@ -10,4 +10,5 @@ import './js/utils/modal-recipes.js';
 import './js/popular.js';
 import './js/renders/search.js';
 import './js/utils/ontopbtn.js';
+import './js/utils/modal-PopUp.js';
 import './js/utils/setClass.js';
