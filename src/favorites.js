@@ -9,6 +9,7 @@ import renderItem from './js/renders/renders.js';
 import startPagination from './js/utils/pagination';
 import { OpenModal } from './js/utils/modal-recipes';
 import Notiflix from 'notiflix';
+import { changeThemePagination } from './js/utils/switchTheme.js'
 
 const refs = {
   favoriteCategoriesList: document.querySelector('.favorite-categories'),
@@ -72,6 +73,8 @@ function generateStorageList(pageSet = 1) {
     if (totalPages > 1) {
       refs.paginationBox.style.display = 'block';
       startPagination(pageSet, perPage, totalPages, generateStorageList);
+
+      changeThemePagination()
     } else {
       refs.paginationBox.style.display = 'none';
     }
