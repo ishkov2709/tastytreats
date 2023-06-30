@@ -5,6 +5,7 @@ import {
   searchImagesAndDisplay,
   setSearchQueryName,
 } from '../renders/search';
+import { searchOnCategory } from '../service/categorySearch';
 
 function createCategoryButton(category, onClick) {
   const button = document.createElement('button');
@@ -30,18 +31,17 @@ async function createCategoriesBlock() {
   // Створення кнопок категорій та додавання їх до контейнера
   categories.forEach(category => {
     const button = createCategoryButton(category.name, () => {
-      console.log(`Вибрано категорію: ${category.name}`);
-
       setSearchQueryName(category.name);
       recipeContainer.innerHTML = '';
-      searchImagesAndDisplay();
+      searchImagesAndDisplay(1, searchOnCategory);
 
-      categoryButtons.forEach(button => {
-        button.classList.remove('active');
+      const prevBtns = document.querySelectorAll('.isUse');
+      prevBtns.forEach(button => {
+        button.classList.remove('isUse');
         return;
       });
 
-      button.classList.add('active');
+      button.classList.add('isUse');
     });
 
     categoryButtons.push(button);
@@ -63,22 +63,29 @@ categoriesContainer.appendChild(scrollContent);
 
 // Додавання функціоналу кнопці "All categories"
 const allCategoriesButton = document.getElementById('allCategoriesButton');
-allCategoriesButton.addEventListener('click', () => {
+allCategoriesButton.addEventListener('click', ({ target }) => {
   // Виконати запит на бекенд для отримання рецептів всіх категорій
-  console.log('Вибрано всі категорії');
-
+  setActiveClass(target);
   setSearchQueryName();
   recipeContainer.innerHTML = '';
-  searchImagesAndDisplay();
+  searchImagesAndDisplay(1, searchOnCategory);
 
   // Зняти стилізацію з усіх кнопок категорій
   const categoryButtons = Array.from(
     document.querySelectorAll('.scroll-content button')
   );
   categoryButtons.forEach(button => {
-    button.classList.remove('active');
+    button.classList.remove('isUse');
   });
 });
 
 // Створення блоку з переліком категорій
 createCategoriesBlock();
+
+// Export Foo
+
+export function setActiveClass(btn = allCategoriesButton) {
+  const prevBtns = document.querySelectorAll('.isUse');
+  prevBtns.forEach(el => el.classList.remove('isUse'));
+  btn.classList.add('isUse');
+}

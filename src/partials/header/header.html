@@ -3,10 +3,17 @@
     <nav class="main-navigation">
       <ul class="menu">
         <li class="menu-item">
-          <a class="menu-home link active" href="./index.html">Home</a>
+          <a id="homeLink" class="menu link active bounce" href="./index.html"
+            >Home</a
+          >
         </li>
         <li class="menu-item">
-          <a class="menu" href="./favorites.html">Favorites</a>
+          <a
+            id="favoriteLink"
+            class="menu link active bounce"
+            href="./favorites.html"
+            >Favorites</a
+          >
         </li>
       </ul>
     </nav>
@@ -17,16 +24,16 @@
     </div>
     <div class="buttons">
       <div class="butto">
-        <button class="button basket-btn">
+        <div class="button basket-btn">
           <a class="contact" href="tel:+380730000000">
             <svg class="basket_icon" width="24" height="24">
               <use class="icon" href="./images/sprite.svg#basket"></use>
             </svg>
           </a>
-        </button>
+        </div>
         <label class="toggle header-toggle-checkbox">
           <input class="toggle-checkbox" type="checkbox" name="switch-theme" />
-          <div class="toggle-switch"></div>
+          <span class="toggle-switch"></span>
           <span class="toggle-label"></span>
         </label>
       </div>
@@ -46,16 +53,28 @@
       <div class="menu-container js-menu-container" id="mobile-menu">
         <div class="mobile-menu">
           <button class="mobile-menu_close-btn menu-toggle js-close-menu">
-            <svg class="mobile-menu-open_icon" width="32" height="32">
+            <svg
+              class="mobile-menu-open_icon icon-close"
+              width="32"
+              height="32"
+            >
               <use href="./images/sprite.svg#icon-x"></use>
             </svg>
           </button>
           <ul class="mobile-menu-nav list">
             <li class="mobile-menu-nav-item">
-              <a class="mobile-menu-nav-link link" href="./index.html">Home</a>
+              <a
+                id="mobHomeLink"
+                class="mobile-menu-nav-link link active-mobile"
+                href="./index.html"
+                >Home</a
+              >
             </li>
             <li class="mobile-menu-nav-item">
-              <a class="mobile-menu-nav-link link" href="./favorites.html"
+              <a
+                id="mobFavLink"
+                class="mobile-menu-nav-link link active-mobile"
+                href="./favorites.html"
                 >Favorites</a
               >
             </li>
@@ -63,7 +82,7 @@
         </div>
         <label class="toggle menu-toggle-checkbox">
           <input class="toggle-checkbox" type="checkbox" name="switch-theme" />
-          <div class="toggle-switch"></div>
+          <span class="toggle-switch"></span>
           <span class="toggle-label"></span>
         </label>
       </div>
