@@ -161,6 +161,9 @@ function AddToFav({ target }) {
   const data = JSON.parse(storage);
   const currentRec = JSON.parse(refs.modalRecipes.dataset.info);
   if (storage) {
+    if (document.querySelector('.empty-storage')) {
+      document.querySelector('.empty-storage').style.display = 'none';
+    }
     if (data.find(el => el.id === currentRec.id)) {
       localStorage.setItem(
         'favorites',
@@ -174,6 +177,10 @@ function AddToFav({ target }) {
   } else {
     localStorage.setItem('favorites', JSON.stringify([currentRec]));
     target.textContent = 'Is Added';
+  }
+
+  if (document.querySelector('.empty-storage') && storage.length < 3) {
+    document.querySelector('.empty-storage').style.display = 'block';
   }
 }
 
