@@ -198,7 +198,8 @@ function addAreaFilters(markup) {
 }
 
 function addIngridientsFilters(markup) {
-  ingredSelect.insertAdjacentHTML('beforeend', markup);
+  ingredSelect.innerHTML = `<option value=""></option>` + markup;
+  // ingredSelect.insertAdjacentHTML('beforeend', markup);
 }
 
 const debouncedOnInpit = debounce(onInput, DEBOUNCE_DELAY);
@@ -297,11 +298,8 @@ export async function searchImagesAndDisplay(
     ingredient = '';
     area = '';
 
-    if (prevSearch === searchQuery) prevSearch = '';
+    if (prevSearch === query) prevSearch = '';
 
-    prevSearch ? (searchQuery = prevSearch) : (searchQuery = '');
-
-    // return;
     prevSearch ? (query = prevSearch) : (query = '');
     searchImagesAndDisplay();
   } finally {

@@ -35,7 +35,7 @@ export async function fetchAreaRecipes() {
 }
 
 export async function fetchIngredientsRecipes() {
-  const url = `https://tasty-treats-backend.p.goit.global/api/categories`
+  const url = `https://tasty-treats-backend.p.goit.global/api/ingredients`
   const res = await axios.get(url)
   return res.data;
 }
