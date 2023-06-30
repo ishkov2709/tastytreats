@@ -25,8 +25,6 @@ const refs = {
 
 let currentBtn = '';
 
-// localStorage.clear()
-
 const categoryRecipes = [];
 
 document.addEventListener('DOMContentLoaded', onFavoritesRealod);
@@ -64,7 +62,7 @@ function generateStorageList(pageSet = 1) {
 
   refs.allBtn.style.display = 'none';
 
-  if (storage) {
+  if (data.length) {
     refs.allBtn.style.display = 'block';
 
     const perPage = calcPages();
