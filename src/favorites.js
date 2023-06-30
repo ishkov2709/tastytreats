@@ -147,6 +147,7 @@ function filterByCategory(evt) {
 
   if (!data.length) {
     refs.favoriteCategoriesList.style.display = 'none';
+
     return;
   }
 
