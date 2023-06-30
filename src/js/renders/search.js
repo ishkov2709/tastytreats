@@ -18,7 +18,7 @@ const spinner = document.getElementById('spinner');
 // Vars
 
 let prevSearch = '';
-export let searchQuery = '';
+let searchQuery = '';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -85,6 +85,8 @@ export async function searchImagesAndDisplay(
   } catch (error) {
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
+
+    if (prevSearch === searchQuery) prevSearch = '';
 
     prevSearch ? (searchQuery = prevSearch) : (searchQuery = '');
 

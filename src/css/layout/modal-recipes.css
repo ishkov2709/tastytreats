@@ -93,6 +93,7 @@
 .save-recipes-btn {
   cursor: pointer;
   display: flex;
+  justify-content: center;
   width: 148px;
   height: 41px;
   padding: 12px 24px 12px 24px;

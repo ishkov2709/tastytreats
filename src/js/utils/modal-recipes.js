@@ -19,6 +19,16 @@ export function OpenModal(currentBtn) {
   refs.backdropModal.classList.remove('is-hidden');
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
+
+  const storage = localStorage.getItem('favorites');
+  const data = JSON.parse(storage);
+
+  if (data.find(el => el.id === currentBtn.dataset.id)) {
+    refs.saveRecipeBtn.textContent = 'Is Added';
+  } else {
+    refs.saveRecipeBtn.textContent = 'Add to favorite';
+  }
+
   refs.saveRecipeBtn.addEventListener('click', AddToFav);
 }
 function CloseModal() {
@@ -140,15 +150,18 @@ function checkSrc(url, description) {
   }
 }
 
-function AddToFav() {
+function AddToFav({ target }) {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
   const currentRec = JSON.parse(refs.modalRecipes.dataset.info);
   if (data.find(el => el.id === currentRec.id)) {
-    return Notiflix.Notify.info('Recipe was added earlier');
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify([...data.filter(el => el.id !== currentRec.id)])
+    );
+    target.textContent = 'Add to favorite';
+  } else {
+    localStorage.setItem('favorites', JSON.stringify([...data, currentRec]));
+    target.textContent = 'Is Added';
   }
-  return localStorage.setItem(
-    'favorites',
-    JSON.stringify([...data, currentRec])
-  );
 }
