@@ -19,8 +19,8 @@ function resizePage() {
   }
 }
 
-export async function searchOnTitle(searchQuery, page) {
-  const apiUrl = `${BASE_URL}?title=${searchQuery}&page=${page}&${resizePage()}`;
+export async function searchOnTitle(searchQuery, page, time = "", area = "", ingredient = "") {
+  const apiUrl = `${BASE_URL}?title=${searchQuery}&page=${page}&${resizePage()}&time=${time}&area=${area}&ingredient=${ingredient}`;
 
   try {
     const { data } = await axios.get(apiUrl);
@@ -40,3 +40,9 @@ export async function searchOnCategory(searchQuery, page) {
     throw new Error('An error occurred while fetching images.');
   }
 }
+
+
+// function () {
+
+//   axios.get("https://tasty-treats-backend.p.goit.global/api/recipes?category=&page=1&limit=6&time=&area=&ingredient=")
+// }
