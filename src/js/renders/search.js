@@ -24,7 +24,7 @@ const timeSelect = document.querySelector('.list-time')
 // Vars
 
 let prevSearch = '';
-export let searchQuery = '';
+let searchQuery = '';
 
 let query = '';
 let time = "";
@@ -316,10 +316,15 @@ export async function searchImagesAndDisplay(
     paginationBox.style.display = 'none';
     Notiflix.Notify.warning('No result for your request, please try again!');
 
+
     query = '';
     time = "";
     ingredient = '';
     area = '';
+    
+    if (prevSearch === searchQuery) prevSearch = '';
+
+    prevSearch ? (searchQuery = prevSearch) : (searchQuery = '');
 
 
     // return;

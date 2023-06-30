@@ -12,22 +12,36 @@ const refs = {
 };
 // open\close a modal window
 
-refs.closeModalBtn.addEventListener('click', CloseModal);
-refs.backdropModal.addEventListener('click', CloseOnClick);
-document.addEventListener('keydown', CloseOnBtnClick);
 export function OpenModal(currentBtn) {
+  refs.closeModalBtn.addEventListener('click', CloseModal);
+  refs.backdropModal.addEventListener('click', CloseOnClick);
+  document.addEventListener('keydown', CloseOnBtnClick);
+
   refs.backdropModal.classList.remove('is-hidden');
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
+
+  const storage = localStorage.getItem('favorites');
+  const data = JSON.parse(storage);
+
+  if (data.find(el => el.id === currentBtn.dataset.id)) {
+    refs.saveRecipeBtn.textContent = 'Is Added';
+  } else {
+    refs.saveRecipeBtn.textContent = 'Add to favorite';
+  }
+
   refs.saveRecipeBtn.addEventListener('click', AddToFav);
 }
 function CloseModal() {
+  removeListeners();
   refs.backdropModal.classList.add('is-hidden');
   refs.modalRecipes.innerHTML = '';
   ToggleScroll();
 }
-function CloseOnClick(e) {
-  if (e.target.classList.contains('backdrop-recipes')) CloseModal();
+function CloseOnClick({ currentTarget, target }) {
+  // if (e.target.classList.contains('backdrop-recipes')) CloseModal();
+
+  if (currentTarget === target) CloseModal();
 }
 function CloseOnBtnClick(e) {
   if (e.key === 'Escape') CloseModal();
@@ -140,15 +154,24 @@ function checkSrc(url, description) {
   }
 }
 
-function AddToFav() {
+function AddToFav({ target }) {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
   const currentRec = JSON.parse(refs.modalRecipes.dataset.info);
   if (data.find(el => el.id === currentRec.id)) {
-    return Notiflix.Notify.info('Recipe was added earlier');
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify([...data.filter(el => el.id !== currentRec.id)])
+    );
+    target.textContent = 'Add to favorite';
+  } else {
+    localStorage.setItem('favorites', JSON.stringify([...data, currentRec]));
+    target.textContent = 'Is Added';
   }
-  return localStorage.setItem(
-    'favorites',
-    JSON.stringify([...data, currentRec])
-  );
+}
+
+function removeListeners() {
+  refs.closeModalBtn.removeEventListener('click', CloseModal);
+  refs.backdropModal.removeEventListener('click', CloseOnClick);
+  document.removeEventListener('keydown', CloseOnBtnClick);
 }

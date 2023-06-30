@@ -19,6 +19,7 @@ const refs = {
   allBtn: document.querySelector('.all-btn'),
   hiroImg: document.querySelector('.fav-hero'),
   recipesBox: document.getElementById('image-container'),
+  modal: document.getElementById('scroll-rec'),
 };
 
 // Variables
@@ -50,9 +51,20 @@ function groupObjects(array, groupSize) {
   return result;
 }
 
-function onFavoritesRealod() {
+export function onFavoritesRealod() {
   const categoryMarkup = generateCategoryList();
-  refs.favoriteCategoriesList.insertAdjacentHTML('beforeend', categoryMarkup);
+
+  const allCatBtn = `<button class="button-fav all-btn onActive" name="all">All categories</button>`;
+
+  const data = JSON.parse(localStorage.getItem('favorites'));
+
+  refs.favoriteRecipesList.innerHTML = '';
+  refs.favoriteCategoriesList.innerHTML = '';
+
+  if (data.length) {
+    refs.favoriteCategoriesList.innerHTML = `${allCatBtn}${categoryMarkup}`;
+  }
+
   generateStorageList();
 }
 
@@ -224,3 +236,9 @@ function hendleClickOnRecipes({ target }) {
 }
 
 refs.recipesBox.addEventListener('click', hendleClickOnRecipes);
+
+refs.modal.addEventListener('click', ({ target }) => {
+  if ((target.className = 'save-recipes-btn')) {
+    return onFavoritesRealod();
+  }
+});
