@@ -19,28 +19,28 @@ function checkOnFavor(id) {
 export function ratingScale(rating) {
   return `<ul class='rate-list'>
              <li class=${measureRating(1, rating)}>
-              <svg class="star-icon" width="18" height="18">
-                <use href="${svg}#star"></use>
+              <svg class='star-icon' width='18' height='18'>
+                <use href='${svg}#star'></use>
               </svg>
             </li>
             <li class=${measureRating(2, rating)}>
-              <svg class="star-icon" width="18" height="18">
-                <use href="${svg}#star"></use>
+              <svg class='star-icon' width='18' height='18'>
+                <use href='${svg}#star'></use>
               </svg>
             </li>
             <li class=${measureRating(3, rating)}>
-              <svg class="star-icon" width="18" height="18">
-                <use href="${svg}#star"></use>
+              <svg class='star-icon' width='18' height='18'>
+                <use href='${svg}#star'></use>
               </svg>
             </li>
             <li class=${measureRating(4, rating)}>
-              <svg class="star-icon" width="18" height="18">
-                <use href="${svg}#star"></use>
+              <svg class='star-icon' width='18' height='18'>
+                <use href='${svg}#star'></use>
               </svg>
             </li>
             <li class=${measureRating(5, rating)}>
-              <svg class="star-icon" width="18" height="18">
-                <use href="${svg}#star"></use>
+              <svg class='star-icon' width='18' height='18'>
+                <use href='${svg}#star'></use>
               </svg>
             </li>
           </ul>`;
@@ -48,15 +48,16 @@ export function ratingScale(rating) {
 
 function renderItem(title, description, preview, rating, id, category) {
   const infoRecipe = {
-    title,
-    description,
-    preview,
-    rating,
-    id,
-    category,
+    title: title,
+    description: description.replace("'", ''),
+    preview: preview,
+    rating: rating,
+    id: id,
+    category: category,
   };
+
   const fixRating = rating > 5 ? Number(5).toFixed(1) : rating.toFixed(1);
-  return `<div data-category=${category} class='recipe-item' 
+  return `<div data-category='${category}' class='recipe-item animate__animated animate__fadeIn' 
                 style='
                       background: linear-gradient(0deg, rgba(5, 5, 5, 0.6),
                       rgba(5, 5, 5, 0)),
@@ -68,10 +69,10 @@ function renderItem(title, description, preview, rating, id, category) {
 
                     <button type='button' 
                     class='favorite-btn ${checkOnFavor(id)}'
-                    data-info='${JSON.stringify(infoRecipe)}' 
+                    data-info='${JSON.stringify(infoRecipe)}'
                     name='favorite'>
-                      <svg class="heart-icon" width="22" height="22">
-                          <use href="${svg}#heart"></use>
+                      <svg class='heart-icon' width='22' height='22'>
+                          <use href='${svg}#heart'></use>
                         </svg>
                     </button> 
 

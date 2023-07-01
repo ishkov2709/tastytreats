@@ -96,7 +96,7 @@
   justify-content: center;
   width: 148px;
   height: 41px;
-  padding: 12px 24px 12px 24px;
+  padding: 12px 8px;
   border-radius: 15px;
   background-color: var(--accent-color);
   font-family: Inter;
@@ -116,7 +116,7 @@
   .save-recipes-btn {
     width: 156px;
     height: 45px;
-    padding: 14px 28px 14px 28px;
+    padding: 14px 10px;
     border-radius: 15px;
   }
 }

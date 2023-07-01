@@ -15,7 +15,7 @@ const refs = {
 export function OpenModal(currentBtn) {
   refs.closeModalBtn.addEventListener('click', CloseModal);
   refs.backdropModal.addEventListener('click', CloseOnClick);
-  document.addEventListener('keydown', CloseOnBtnClick);
+  window.addEventListener('keydown', CloseOnBtnClick);
 
   refs.backdropModal.classList.remove('is-hidden');
   genereteRecipe(currentBtn.dataset.id);
@@ -26,7 +26,7 @@ export function OpenModal(currentBtn) {
 
   if (storage) {
     if (data.find(el => el.id === currentBtn.dataset.id)) {
-      refs.saveRecipeBtn.textContent = 'Is Added';
+      refs.saveRecipeBtn.textContent = 'Remove favorite';
     } else {
       refs.saveRecipeBtn.textContent = 'Add to favorite';
     }
@@ -48,6 +48,7 @@ function CloseOnClick({ currentTarget, target }) {
 function CloseOnBtnClick(e) {
   if (e.key === 'Escape') CloseModal();
 }
+
 // bild the page
 
 async function genereteRecipe(id) {
@@ -114,15 +115,9 @@ function CreateMarkup(data) {
   <p class="recipe-instr">${data.instructions}</p>
   </div>
 `;
-  // scrollbarBox.insertAdjacentHTML('afterbegin',`<p class="recipe-instr">${data.instructions}</p>`);
-
-  // const scrollbarBox = document.querySelector('.recipe-instr');
-  //   const scrollbar = SmoothScrollbar.init(scrollbarBox, {
-  //       alwaysShowTracks: true
-  //   });
-
   return markup;
 }
+
 function addScrollbarText() {
   const scrollbarBox = document.querySelector('.recipe-instr');
   const scrollbar = SmoothScrollbar.init(scrollbarBox, {
@@ -156,14 +151,11 @@ function checkSrc(url, description) {
   }
 }
 
-function AddToFav({ target }) {
+export function AddToFav({ target }) {
   const storage = localStorage.getItem('favorites');
   const data = JSON.parse(storage);
   const currentRec = JSON.parse(refs.modalRecipes.dataset.info);
   if (storage) {
-    if (document.querySelector('.empty-storage')) {
-      document.querySelector('.empty-storage').style.display = 'none';
-    }
     if (data.find(el => el.id === currentRec.id)) {
       localStorage.setItem(
         'favorites',
@@ -172,20 +164,17 @@ function AddToFav({ target }) {
       target.textContent = 'Add to favorite';
     } else {
       localStorage.setItem('favorites', JSON.stringify([...data, currentRec]));
-      target.textContent = 'Is Added';
+      target.textContent = 'Remove favorite';
     }
   } else {
     localStorage.setItem('favorites', JSON.stringify([currentRec]));
-    target.textContent = 'Is Added';
-  }
-
-  if (document.querySelector('.empty-storage') && storage.length < 3) {
-    document.querySelector('.empty-storage').style.display = 'block';
+    target.textContent = 'Remove favorite';
   }
 }
 
 function removeListeners() {
   refs.closeModalBtn.removeEventListener('click', CloseModal);
   refs.backdropModal.removeEventListener('click', CloseOnClick);
-  document.removeEventListener('keydown', CloseOnBtnClick);
+  refs.saveRecipeBtn.removeEventListener('click', AddToFav);
+  window.removeEventListener('keydown', CloseOnBtnClick);
 }

@@ -55,6 +55,10 @@ h2 {
   gap: 16px;
 }
 
+.popular-list .list-item {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   .list-item {
     margin-bottom: 16px;
