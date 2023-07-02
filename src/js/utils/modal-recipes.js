@@ -6,6 +6,7 @@ import Notiflix from 'notiflix';
 const refs = {
   closeModalBtn: document.querySelector('.close-modal'),
   backdropModal: document.querySelector('.backdrop-recipes'),
+  mainModalRecipes: document.querySelector('.modal-recipes'),
   modalRecipes: document.querySelector('.modal-recipes-js'),
   backdropModal: document.querySelector('.backdrop-recipes'),
   saveRecipeBtn: document.querySelector('.save-recipes-btn'),
@@ -17,7 +18,8 @@ export function OpenModal(currentBtn) {
   refs.backdropModal.addEventListener('click', CloseOnClick);
   window.addEventListener('keydown', CloseOnBtnClick);
 
-  refs.backdropModal.classList.remove('is-hidden');
+  refs.backdropModal.classList.remove('is-hidden-modal');
+  refs.mainModalRecipes.classList.remove('is-hidden-modal');
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
 
@@ -34,17 +36,19 @@ export function OpenModal(currentBtn) {
 
   refs.saveRecipeBtn.addEventListener('click', AddToFav);
 }
+
 function CloseModal() {
   removeListeners();
-  refs.backdropModal.classList.add('is-hidden');
+  refs.backdropModal.classList.add('is-hidden-modal');
+  refs.mainModalRecipes.classList.add('is-hidden-modal');
   refs.modalRecipes.innerHTML = '';
   ToggleScroll();
 }
-function CloseOnClick({ currentTarget, target }) {
-  // if (e.target.classList.contains('backdrop-recipes')) CloseModal();
 
+function CloseOnClick({ currentTarget, target }) {
   if (currentTarget === target) CloseModal();
 }
+
 function CloseOnBtnClick(e) {
   if (e.key === 'Escape') CloseModal();
 }
@@ -82,7 +86,7 @@ function CreateMarkup(data) {
   const tags = data.tags;
   let tagslist = '';
   if (!tags[0]) {
-    // document.querySelector(".recipe-tags").classList.add("is-hidden");
+    // document.querySelector(".recipe-tags").classList.add("is-hidden-modal");
     // console.log('Zero');
   } else {
     for (let k = 0; k < tags.length; k++) {

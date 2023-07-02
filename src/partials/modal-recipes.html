@@ -1,6 +1,5 @@
-<!-- <div class="backdrop-recipes is-hidden"> -->
-<div class="backdrop-recipes">
-  <!-- <div id="scroll-rec" class="modal-recipes">
+<div class="backdrop-recipes is-hidden-modal">
+  <div id="scroll-rec" class="modal-recipes is-hidden-modal">
     <div class="modal-recipes-js"></div>
     <button class="close-modal">
       <svg class="close-modal-ico" width="20" height="20">
@@ -9,9 +8,9 @@
     </button>
     <div class="scroll-box"></div>
     <button class="save-recipes-btn">Add to favorite</button>
-  </div> -->
+  </div>
 
-  <div class="order-now-modal js-order-form">
+  <div class="order-now-modal js-order-form is-hidden-modal">
     <button class="close-modal">
       <svg class="close-modal-ico" width="20" height="20">
         <use href="./images/sprite.svg#icon-x"></use>
@@ -21,35 +20,22 @@
     <form class="order-now-form">
       <label class="order-now-formfield">
         <span class="order-now-name">Name</span>
-        <input
-          type="text"
-          name="name"
-          class="order-now-input js-order-input"
-          required
-        />
+        <input name="name" class="order-now-input js-input-name" />
       </label>
       <label class="order-now-formfield">
         <span class="order-now-name">Phone number</span>
-        <input
-          type="tel"
-          name="tel"
-          class="order-now-input js-order-input"
-          required
-        />
+        <input name="tel" class="order-now-input js-input-tel" />
       </label>
       <label class="order-now-formfield">
         <span class="order-now-name">Email</span>
-        <input
-          type="email"
-          name="email"
-          class="order-now-input js-order-input"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          required
-        />
+        <input name="email" class="order-now-input js-input-email" />
       </label>
       <label class="order-now-formfield">
         <span class="order-now-name">Comment</span>
-        <textarea class="order-now-textarea" name="comment"></textarea>
+        <textarea
+          class="order-now-textarea js-input-comment"
+          name="comment"
+        ></textarea>
       </label>
       <button
         type="submit"

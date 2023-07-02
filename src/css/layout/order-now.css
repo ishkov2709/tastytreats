@@ -1,8 +1,18 @@
+.order-now-modal.is-hidden-modal {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.8);
+
+  transition: opacity 250ms linear, visibility 250ms linear,
+    transform 250ms linear;
+}
+
 .order-now-modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
   padding: 28px 20px;
 
@@ -12,6 +22,33 @@
   background-color: var(--primary-white-color);
 
   border-radius: 15px;
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+
+  transition: opacity 250ms linear, visibility 250ms linear,
+    transform 250ms linear;
+}
+
+.dark .order-now-modal {
+  background-color: var(--primaty-black-color);
+  color: var(--primary-white-color);
+}
+
+@media screen and (min-width: 768px) {
+  .order-now-modal {
+    width: 440px;
+    height: 632px;
+
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 1279px) and (orientation: landscape) {
+  .order-now-modal {
+    top: 90%;
+  }
 }
 
 .order-now-title {
@@ -25,14 +62,26 @@
   margin-bottom: 28px;
 }
 
+@media screen and (min-width: 768px) {
+  .order-now-title {
+    margin-bottom: 40px;
+  }
+}
+
 .order-now-formfield {
   display: block;
 
   margin-bottom: 16px;
 }
 
-.order-now-formfield:last-child {
+.order-now-formfield:last-of-type {
   margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .order-now-formfield {
+    margin-bottom: 18px;
+  }
 }
 
 .order-now-name {
@@ -46,15 +95,48 @@
   margin-bottom: 8px;
 }
 
+.dark .order-now-name {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .order-now-input,
 .order-now-textarea {
   width: 100%;
   height: 46px;
 
-  padding: 15px;
+  padding: 14px 18px;
+
+  font-size: 14px;
+  line-height: 1.2;
 
   border: 1px solid rgba(5, 5, 5, 0.2);
   border-radius: 15px;
+
+  transition: border-color 250ms linear;
+}
+
+.dark .order-now-input,
+.dark .order-now-textarea {
+  background-color: inherit;
+  color: var(--primary-white-color);
+
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+  .order-now-input,
+  .order-now-textarea {
+    height: 48px;
+  }
+}
+
+.order-now-input:focus,
+.order-now-textarea:focus {
+  outline: none;
+  border-color: #dfdb22;
+
+  transition: border-color 250ms linear;
 }
 
 .order-now-textarea {
@@ -73,12 +155,14 @@
 
   font-size: 14px;
   line-height: 1.2;
-  font-weight: 500;
 
   border: none;
   border-radius: 15px;
+
+  transition: opacity 250ms linear;
 }
 
 .send-order-btn:disabled {
   opacity: 0.5;
+  cursor: default;
 }
