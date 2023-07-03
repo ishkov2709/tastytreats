@@ -1,8 +1,9 @@
-import { findRecipes } from '../service/API';
+import { findRecipes, patchRating } from '../service/API';
 import { measureRating } from '../renders/renders';
 import { ratingScale } from '../renders/renders';
 import SmoothScrollbar from 'smooth-scrollbar';
 import Notiflix from 'notiflix';
+import { isValidEmail } from './orderForm';
 const refs = {
   closeModalBtn: document.querySelector('.close-modal'),
   backdropModal: document.querySelector('.backdrop-recipes'),
@@ -10,16 +11,27 @@ const refs = {
   modalRecipes: document.querySelector('.modal-recipes-js'),
   backdropModal: document.querySelector('.backdrop-recipes'),
   saveRecipeBtn: document.querySelector('.save-recipes-btn'),
+  giveRatingBtn: document.querySelector('.give-rating-btn'),
+  rateModal: document.querySelector('.modal-rating'),
+  closeRate: document.querySelector('.close-rate-modal'),
+  modalRateList: document.querySelector('.modal-rate-list'),
+  rateVal: document.querySelector('.rate-range-value'),
+  rateRage: document.querySelector('.rate-range-input'),
+  rateEmail: document.querySelector('.rate-email-input'),
+  rateForm: document.querySelector('.rate-form'),
+  sendRateBtn: document.querySelector('.send-rating-btn'),
 };
 // open\close a modal window
 
 export function OpenModal(currentBtn) {
   refs.closeModalBtn.addEventListener('click', CloseModal);
   refs.backdropModal.addEventListener('click', CloseOnClick);
+  refs.giveRatingBtn.addEventListener('click', OpenRateModal);
   window.addEventListener('keydown', CloseOnBtnClick);
 
   refs.backdropModal.classList.remove('is-hidden-modal');
   refs.mainModalRecipes.classList.remove('is-hidden-modal');
+  refs.rateForm.dataset.id = currentBtn.dataset.id;
   genereteRecipe(currentBtn.dataset.id);
   ToggleScroll();
 
@@ -37,10 +49,83 @@ export function OpenModal(currentBtn) {
   refs.saveRecipeBtn.addEventListener('click', AddToFav);
 }
 
+function OpenRateModal() {
+  refs.mainModalRecipes.classList.add('is-hidden-modal');
+  refs.rateModal.classList.remove('is-hidden-modal');
+
+  refs.closeRate.addEventListener('click', CloseRateModal); //1
+  refs.modalRateList.addEventListener('click', GiveRate); //2
+  refs.rateEmail.addEventListener('input', checkRateInputs); //3
+  refs.rateForm.addEventListener('submit', SubmitRate); //4
+}
+
+function GiveRate(e) {
+  const target = e.target.closest('.item-modal-star');
+
+  if (target) {
+    const rate = [...e.currentTarget.children].indexOf(target) + 1;
+    [...e.currentTarget.children].forEach((el, i) =>
+      i <= rate - 1
+        ? el.classList.add('is-rated')
+        : el.classList.remove('is-rated')
+    );
+    refs.rateVal.textContent = rate.toFixed(1);
+    refs.rateRage.value = rate;
+  }
+}
+
+function checkRateInputs() {
+  if (!isValidEmail(refs.rateEmail.value)) {
+    refs.rateEmail.style.borderColor = '#b83245';
+    refs.sendRateBtn.disabled = true;
+  } else {
+    refs.rateEmail.style.borderColor = '#9bb537';
+    refs.sendRateBtn.disabled = false;
+  }
+}
+
+async function SubmitRate(e) {
+  e.preventDefault();
+  const data = {
+    rate: Number(e.target.elements['rating'].value),
+    email: e.target.elements['email'].value,
+  };
+  const id = refs.rateForm.dataset.id;
+
+  await patchRating(id, data);
+  Notiflix.Notify.success('Thank you for appreciating the recipe.');
+
+  CloseModal();
+}
+
+function restoreForm() {
+  [...refs.modalRateList.children].forEach(el =>
+    el.classList.remove('is-rated')
+  );
+
+  refs.rateEmail.style.borderColor = '';
+  refs.sendRateBtn.disabled = true;
+  refs.rateVal.textContent = '0.0';
+  refs.rateForm.dataset.id = '';
+  refs.rateForm.reset();
+}
+
+function CloseRateModal() {
+  refs.mainModalRecipes.classList.remove('is-hidden-modal');
+  refs.rateModal.classList.add('is-hidden-modal');
+
+  refs.closeRate.removeEventListener('click', CloseRateModal); //1
+  refs.modalRateList.addEventListener('click', GiveRate); //2
+  refs.rateEmail.addEventListener('input', checkRateInputs); //3
+  refs.rateForm.addEventListener('submit', SubmitRate); //4
+}
+
 function CloseModal() {
   removeListeners();
+  restoreForm();
   refs.backdropModal.classList.add('is-hidden-modal');
   refs.mainModalRecipes.classList.add('is-hidden-modal');
+  refs.rateModal.classList.add('is-hidden-modal');
   refs.modalRecipes.innerHTML = '';
   ToggleScroll();
 }
@@ -177,8 +262,17 @@ export function AddToFav({ target }) {
 }
 
 function removeListeners() {
+  // Main Modal
   refs.closeModalBtn.removeEventListener('click', CloseModal);
   refs.backdropModal.removeEventListener('click', CloseOnClick);
   refs.saveRecipeBtn.removeEventListener('click', AddToFav);
+  // Rating Modal
+  refs.giveRatingBtn.removeEventListener('click', OpenRateModal);
+  refs.closeRate.removeEventListener('click', CloseRateModal);
+
+  refs.modalRateList.removeEventListener('click', GiveRate);
+  refs.rateEmail.removeEventListener('input', checkRateInputs);
+  refs.rateForm.removeEventListener('submit', SubmitRate);
+  // All
   window.removeEventListener('keydown', CloseOnBtnClick);
 }

@@ -74,7 +74,7 @@ function isValidName(name) {
   return regex.test(name);
 }
 
-function isValidEmail(email) {
+export function isValidEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 }

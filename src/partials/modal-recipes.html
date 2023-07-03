@@ -8,6 +8,7 @@
     </button>
     <div class="scroll-box"></div>
     <button class="save-recipes-btn">Add to favorite</button>
+    <button class="give-rating-btn">Give a rating</button>
   </div>
 
   <div class="order-now-modal js-order-form is-hidden-modal">
@@ -20,19 +21,24 @@
     <form class="order-now-form">
       <label class="order-now-formfield">
         <span class="order-now-name">Name</span>
-        <input name="name" class="order-now-input js-input-name" />
+        <input type="text" name="name" class="order-now-input js-input-name" />
       </label>
       <label class="order-now-formfield">
         <span class="order-now-name">Phone number</span>
-        <input name="tel" class="order-now-input js-input-tel" />
+        <input type="tel" name="tel" class="order-now-input js-input-tel" />
       </label>
       <label class="order-now-formfield">
         <span class="order-now-name">Email</span>
-        <input name="email" class="order-now-input js-input-email" />
+        <input
+          type="email"
+          name="email"
+          class="order-now-input js-input-email"
+        />
       </label>
       <label class="order-now-formfield">
         <span class="order-now-name">Comment</span>
         <textarea
+          type="text"
           class="order-now-textarea js-input-comment"
           name="comment"
         ></textarea>
@@ -46,5 +52,82 @@
         Send
       </button>
     </form>
+  </div>
+
+  <div class="modal-rating is-hidden-modal">
+    <button class="close-modal close-rate-modal">
+      <svg class="close-modal-ico" width="20" height="20">
+        <use href="./images/sprite.svg#icon-x"></use>
+      </svg>
+    </button>
+    <b class="rate-modal-title">Rating</b>
+    <div class="rate-box">
+      <ul class="modal-rate-list">
+        <li class="item-modal-star">
+          <button type="button" class="rate-start-btn">
+            <svg class="modal-star-icon" width="24" height="24">
+              <use href="./images/sprite.svg#rate-star"></use>
+            </svg>
+          </button>
+        </li>
+        <li class="item-modal-star">
+          <button type="button" class="rate-start-btn">
+            <svg class="modal-star-icon" width="24" height="24">
+              <use href="./images/sprite.svg#rate-star"></use>
+            </svg>
+          </button>
+        </li>
+        <li class="item-modal-star">
+          <button type="button" class="rate-start-btn">
+            <svg class="modal-star-icon" width="24" height="24">
+              <use href="./images/sprite.svg#rate-star"></use>
+            </svg>
+          </button>
+        </li>
+        <li class="item-modal-star">
+          <button type="button" class="rate-start-btn">
+            <svg class="modal-star-icon" width="24" height="24">
+              <use href="./images/sprite.svg#rate-star"></use>
+            </svg>
+          </button>
+        </li>
+        <li class="item-modal-star">
+          <button type="button" class="rate-start-btn">
+            <svg class="modal-star-icon" width="24" height="24">
+              <use href="./images/sprite.svg#rate-star"></use>
+            </svg>
+          </button>
+        </li>
+      </ul>
+      <form class="rate-form" data-id="">
+        <label class="rate-formfield">
+          <span class="rate-range-value">0.0</span>
+          <input
+            type="range"
+            min="0"
+            max="5"
+            value="0"
+            class="rate-range-input"
+            name="rating"
+            required
+          />
+        </label>
+        <label class="rate-formfield">
+          <input
+            class="rate-email-input"
+            placeholder="Enter email"
+            name="email"
+          />
+        </label>
+        <button
+          type="submit"
+          name="send"
+          class="send-rating-btn"
+          disabled="true"
+        >
+          Send
+        </button>
+      </form>
+    </div>
   </div>
 </div>
