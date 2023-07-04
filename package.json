@@ -1,21 +1,21 @@
 {
-  "name": "tastytreats-GROUP3",
+  "name": "TastyTreats",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://ishkov2709.github.io/tastytreats-GROUP3",
+  "homepage": "https://ishkov2709.github.io/TastyTreats",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /tastytreats-GROUP3/"
+    "build": "parcel build src/*.html --public-url /TastyTreats/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ishkov2709/tastytreats-GROUP3.git"
+    "url": "git+https://github.com/ishkov2709/TastyTreats.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ishkov2709/tastytreats-GROUP3/issues"
+    "url": "https://github.com/ishkov2709/TastyTreats/issues"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
