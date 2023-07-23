@@ -154,8 +154,6 @@ function onInput(e) {
 
   setActiveClass();
   searchImagesAndDisplay();
-
-  console.log(query, area, time, ingredient);
 }
 
 function customizeText(text) {
